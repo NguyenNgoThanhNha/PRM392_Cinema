@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace PRM_API.Models;
 
@@ -17,5 +18,6 @@ public partial class Showtime
 
     public virtual CinemaHall Hall { get; set; } = null!;
 
+    [JsonIgnore]
     public virtual Movie Movie { get; set; } = null!;
 }

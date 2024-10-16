@@ -9,6 +9,7 @@ public class ApplicationMapper : Profile
     public ApplicationMapper()
     {
         CreateMap<User, UserDTO>().ReverseMap();
+        CreateMap<Movie, MovieDTO>().ReverseMap();
 
     }
 }
