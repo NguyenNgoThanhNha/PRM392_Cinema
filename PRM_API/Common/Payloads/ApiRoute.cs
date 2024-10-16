@@ -15,4 +15,12 @@ public class ApiRoute
         public const string GetAllGenre = Base + "/movie-genres";
         public const string GetAllLang = Base + "/movie-languages";
     }
+    public static class FAB
+    {
+        public const string GetAll = Base + "/fab";
+        public const string GetById = Base + "/fab/{id}";
+        public const string Create = Base + "/fab";
+        public const string Update = Base + "/fab";
+        public const string Delete = Base + "/fab/{id}";
+    }
 }
