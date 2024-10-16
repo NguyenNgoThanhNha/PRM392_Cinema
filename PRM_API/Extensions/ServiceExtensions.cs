@@ -10,6 +10,7 @@ using PRM_API.Repositories;
 using PRM_API.Mappers;
 using PRM_API.Data;
 using PRM_API.Services;
+using PRM_API.Services.Impl;
 
 namespace PRM_API.Extensions
 {
@@ -39,6 +40,7 @@ namespace PRM_API.Extensions
             services.AddScoped(typeof(IRepository<,>), typeof(GenericRepository<,>));
             services.AddScoped<DatabaseInitializer>();
             services.AddScoped<UserService>();
+            services.AddScoped<IMovieService, MovieService>();
            
             return services;
         }

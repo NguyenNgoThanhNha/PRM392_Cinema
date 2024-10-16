@@ -1,7 +1,6 @@
 using System.Linq.Expressions;
 using PRM_API.Models;
 using Microsoft.EntityFrameworkCore;
-using PRM_API.Models;
 
 namespace PRM_API.Repositories;
 
