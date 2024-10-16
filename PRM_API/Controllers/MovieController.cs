@@ -24,7 +24,7 @@ namespace PRM_API.Controllers
             else
             {
                 movies = (await movieService.FindAllWithConditionAsync(
-                    filter: mv => mv.Title.Contains(filter!.Title) ||
+                    filter: mv => mv.Title.Contains(filter!.Title!) ||
                         (!string.IsNullOrEmpty(mv.Description)
                             && mv.Description.Contains(filter.Description!)) ||
                         (mv.ReleaseDate.HasValue && filter.ReleaseDate.HasValue
@@ -56,7 +56,14 @@ namespace PRM_API.Controllers
                    filter.ShowTimeTo.HasValue;
         }
 
-        
+        [HttpGet(ApiRoute.Movie.GetById, Name = nameof(GetMovieByIdAsync))]
+        public async Task<IActionResult> GetMovieByIdAsync([FromRoute] int id)
+        {
+            var movieDTO = await movieService.FindAsync(id);
+            return Ok(movieDTO);
+        }
+
+
         [HttpGet(ApiRoute.Movie.GetAllGenre, Name = nameof(GetAllMovieGenreAsync))]
         public async Task<IActionResult> GetAllMovieGenreAsync()
         {

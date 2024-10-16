@@ -7,12 +7,16 @@
       "RelativeMoniker": "D:0:0:{291ECFAC-ECCF-4A6B-81C7-24BCB023A80B}|PRM_API\\PRM_API.csproj|solutionrelative:prm_api\\data\\databaseinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{291ECFAC-ECCF-4A6B-81C7-24BCB023A80B}|PRM_API\\PRM_API.csproj|e:\\se171957-phuoclx-fpthcm\\prm392\\final project\\prm392_cinema\\prm_api\\models\\movie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{291ECFAC-ECCF-4A6B-81C7-24BCB023A80B}|PRM_API\\PRM_API.csproj|solutionrelative:prm_api\\models\\movie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{291ECFAC-ECCF-4A6B-81C7-24BCB023A80B}|PRM_API\\PRM_API.csproj|e:\\se171957-phuoclx-fpthcm\\prm392\\final project\\prm392_cinema\\prm_api\\extensions\\enumextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{291ECFAC-ECCF-4A6B-81C7-24BCB023A80B}|PRM_API\\PRM_API.csproj|solutionrelative:prm_api\\extensions\\enumextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{291ECFAC-ECCF-4A6B-81C7-24BCB023A80B}|PRM_API\\PRM_API.csproj|e:\\se171957-phuoclx-fpthcm\\prm392\\final project\\prm392_cinema\\prm_api\\common\\enum\\movielanguage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{291ECFAC-ECCF-4A6B-81C7-24BCB023A80B}|PRM_API\\PRM_API.csproj|solutionrelative:prm_api\\common\\enum\\movielanguage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{291ECFAC-ECCF-4A6B-81C7-24BCB023A80B}|PRM_API\\PRM_API.csproj|e:\\se171957-phuoclx-fpthcm\\prm392\\final project\\prm392_cinema\\prm_api\\controllers\\moviecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{291ECFAC-ECCF-4A6B-81C7-24BCB023A80B}|PRM_API\\PRM_API.csproj|solutionrelative:prm_api\\controllers\\moviecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{291ECFAC-ECCF-4A6B-81C7-24BCB023A80B}|PRM_API\\PRM_API.csproj|e:\\se171957-phuoclx-fpthcm\\prm392\\final project\\prm392_cinema\\prm_api\\services\\movieservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{291ECFAC-ECCF-4A6B-81C7-24BCB023A80B}|PRM_API\\PRM_API.csproj|solutionrelative:prm_api\\services\\movieservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 524,
-          "SelectedChildIndex": 14,
+          "SelectedChildIndex": 13,
           "Children": [
             {
               "$type": "Bookmark",
@@ -74,28 +78,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MovieLanguage.cs",
-              "DocumentMoniker": "E:\\SE171957-Phuoclx-FPTHCM\\PRM392\\Final Project\\PRM392_Cinema\\PRM_API\\Common\\Enum\\MovieLanguage.cs",
-              "RelativeDocumentMoniker": "PRM_API\\Common\\Enum\\MovieLanguage.cs",
-              "ToolTip": "E:\\SE171957-Phuoclx-FPTHCM\\PRM392\\Final Project\\PRM392_Cinema\\PRM_API\\Common\\Enum\\MovieLanguage.cs",
-              "RelativeToolTip": "PRM_API\\Common\\Enum\\MovieLanguage.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-16T04:34:23.794Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Movie.cs",
-              "DocumentMoniker": "E:\\SE171957-Phuoclx-FPTHCM\\PRM392\\Final Project\\PRM392_Cinema\\PRM_API\\Models\\Movie.cs",
-              "RelativeDocumentMoniker": "PRM_API\\Models\\Movie.cs",
-              "ToolTip": "E:\\SE171957-Phuoclx-FPTHCM\\PRM392\\Final Project\\PRM392_Cinema\\PRM_API\\Models\\Movie.cs",
-              "RelativeToolTip": "PRM_API\\Models\\Movie.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAA3wBcAAAAnAAAAAAAAAA==",
+              "Title": "EnumExtension.cs",
+              "DocumentMoniker": "E:\\SE171957-Phuoclx-FPTHCM\\PRM392\\Final Project\\PRM392_Cinema\\PRM_API\\Extensions\\EnumExtension.cs",
+              "RelativeDocumentMoniker": "PRM_API\\Extensions\\EnumExtension.cs",
+              "ToolTip": "E:\\SE171957-Phuoclx-FPTHCM\\PRM392\\Final Project\\PRM392_Cinema\\PRM_API\\Extensions\\EnumExtension.cs",
+              "RelativeToolTip": "PRM_API\\Extensions\\EnumExtension.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-16T04:32:32.905Z",
+              "WhenOpened": "2024-10-16T06:17:54.45Z",
               "EditorCaption": ""
             },
             {
@@ -106,9 +97,35 @@
               "RelativeDocumentMoniker": "PRM_API\\Data\\DatabaseInitializer.cs",
               "ToolTip": "E:\\SE171957-Phuoclx-FPTHCM\\PRM392\\Final Project\\PRM392_Cinema\\PRM_API\\Data\\DatabaseInitializer.cs",
               "RelativeToolTip": "PRM_API\\Data\\DatabaseInitializer.cs",
-              "ViewState": "AgIAADgAAAAAAAAAAAAywGMAAAArAAAAAAAAAA==",
+              "ViewState": "AgIAAGYAAAAAAAAAAAAuwIsAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-16T04:31:53.206Z",
+              "WhenOpened": "2024-10-16T05:58:07.246Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MovieService.cs",
+              "DocumentMoniker": "E:\\SE171957-Phuoclx-FPTHCM\\PRM392\\Final Project\\PRM392_Cinema\\PRM_API\\Services\\MovieService.cs",
+              "RelativeDocumentMoniker": "PRM_API\\Services\\MovieService.cs",
+              "ToolTip": "E:\\SE171957-Phuoclx-FPTHCM\\PRM392\\Final Project\\PRM392_Cinema\\PRM_API\\Services\\MovieService.cs",
+              "RelativeToolTip": "PRM_API\\Services\\MovieService.cs",
+              "ViewState": "AgIAADUAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-16T05:54:35.399Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MovieController.cs",
+              "DocumentMoniker": "E:\\SE171957-Phuoclx-FPTHCM\\PRM392\\Final Project\\PRM392_Cinema\\PRM_API\\Controllers\\MovieController.cs",
+              "RelativeDocumentMoniker": "PRM_API\\Controllers\\MovieController.cs",
+              "ToolTip": "E:\\SE171957-Phuoclx-FPTHCM\\PRM392\\Final Project\\PRM392_Cinema\\PRM_API\\Controllers\\MovieController.cs",
+              "RelativeToolTip": "PRM_API\\Controllers\\MovieController.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAD0AAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-16T05:52:26.335Z",
               "EditorCaption": ""
             }
           ]

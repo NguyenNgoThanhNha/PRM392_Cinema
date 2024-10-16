@@ -1,5 +1,6 @@
 ﻿    using Microsoft.EntityFrameworkCore;
 using PRM_API.Common.Enum;
+using PRM_API.Extensions;
 using PRM_API.Models;
 
     namespace PRM_API.Data
@@ -100,35 +101,36 @@ using PRM_API.Models;
         private async Task SeedMovieAsync()
         {
             var cinemaHalls = await dbContext.CinemaHalls.ToListAsync();
-            if (!cinemaHalls.Any()) return; // Ensure there are cinema halls available.
+            if (!cinemaHalls.Any()) return; 
 
             var random = new Random();
-            var moviesData = new List<(string Title, string Description, MovieLanguage Language)>
+            var moviesData = new List<(string Title, string Description, string)>
             {
                 // English Movies translated to Vietnamese
-                ("Cuộc Phiêu Lưu Vĩ Đại", "Một cuộc hành trình kỳ thú qua những vùng đất chưa được khám phá.", MovieLanguage.English),
-                ("Tình Yêu Ở Paris", "Một câu chuyện tình lãng mạn diễn ra tại trái tim của Paris.", MovieLanguage.English),
-                ("Bí Ẩn Đảo Hoang", "Một câu chuyện bí ẩn đầy kịch tính xảy ra trên một hòn đảo hoang vắng.", MovieLanguage.English),
+                ("Cuộc Phiêu Lưu Vĩ Đại", "Một cuộc hành trình kỳ thú qua những vùng đất chưa được khám phá.", MovieLanguage.English.GetDescription()),
+                ("Tình Yêu Ở Paris", "Một câu chuyện tình lãng mạn diễn ra tại trái tim của Paris.", MovieLanguage.English.GetDescription()),
+                ("Bí Ẩn Đảo Hoang", "Một câu chuyện bí ẩn đầy kịch tính xảy ra trên một hòn đảo hoang vắng.", MovieLanguage.English.GetDescription()),
         
                 // Japanese Movie translated to Vietnamese
-                ("Con Đường Của Samurai", "Một câu chuyện về danh dự và trả thù diễn ra tại Nhật Bản thời phong kiến.", MovieLanguage.Japanese),
+                ("Con Đường Của Samurai", "Một câu chuyện về danh dự và trả thù diễn ra tại Nhật Bản thời phong kiến.", MovieLanguage.Japanese.GetDescription()),
         
                 // Korean Movie translated to Vietnamese
-                ("Biển Lặng", "Một bộ phim khoa học viễn tưởng về nhiệm vụ thu thập những mẫu vật bí ẩn từ mặt trăng.", MovieLanguage.Korean),
+                ("Biển Lặng", "Một bộ phim khoa học viễn tưởng về nhiệm vụ thu thập những mẫu vật bí ẩn từ mặt trăng.", MovieLanguage.Korean.GetDescription()),
         
                 // Thai Movie translated to Vietnamese
-                ("Những Đêm Bangkok", "Một bộ phim tội phạm gay cấn diễn ra trên những con phố sầm uất của Bangkok.", MovieLanguage.Thai),
+                ("Những Đêm Bangkok", "Một bộ phim tội phạm gay cấn diễn ra trên những con phố sầm uất của Bangkok.", MovieLanguage.Thai.GetDescription()),
         
                 // Vietnamese Movie (no translation needed)
-                ("Hoàng Hôn Sài Gòn", "Một câu chuyện ấm lòng về tình yêu và truyền thống trong Việt Nam hiện đại.", MovieLanguage.Vietnamese),
+                ("Hoàng Hôn Sài Gòn", "Một câu chuyện ấm lòng về tình yêu và truyền thống trong Việt Nam hiện đại.", MovieLanguage.Vietnamese.GetDescription()),
         
                 // More English Movies translated to Vietnamese
-                ("Chiến Tranh Thiên Hà", "Một trận chiến liên thiên hà để sinh tồn.", MovieLanguage.English),
-                ("Những Giấc Mơ Hoạt Hình", "Một bộ phim hoạt hình ấm áp dành cho mọi lứa tuổi.", MovieLanguage.English),
-                ("Ngôi Nhà Ma Ám", "Một câu chuyện kinh hoàng về một ngôi nhà bị ma ám.", MovieLanguage.English)
+                ("Chiến Tranh Thiên Hà", "Một trận chiến liên thiên hà để sinh tồn.", MovieLanguage.English.GetDescription()),
+                ("Những Giấc Mơ Hoạt Hình", "Một bộ phim hoạt hình ấm áp dành cho mọi lứa tuổi.", MovieLanguage.English.GetDescription()),
+                ("Ngôi Nhà Ma Ám", "Một câu chuyện kinh hoàng về một ngôi nhà bị ma ám.", MovieLanguage.English.GetDescription())
             };
 
-            var movieGenres = Enum.GetValues(typeof(MovieGenre)).Cast<MovieGenre>().ToList();
+            var movieGenres = Enum.GetValues(typeof(MovieGenre)).Cast<MovieGenre>()
+                .Select(x => x.GetDescription()).ToList();
 
             var movies = new List<Movie>();
 
@@ -171,30 +173,43 @@ using PRM_API.Models;
         private async Task SeedCinemaHallAsync()
         {
             Random random = new Random();
-            List<string> seatTypes = new List<string> { "Normal", "VIP", "Couple" };
+            //List<string> seatTypes = new List<string> { "Ghế thường", "Ghế VIP" };
+
+            int seatsPerRow = 12;
 
             List<CinemaHall> cinemaHalls = new()
             {
-                new CinemaHall { HallName = "Hall A", TotalSeats = 100 },
-                new CinemaHall { HallName = "Hall B", TotalSeats = 90 },
-                new CinemaHall { HallName = "Hall C", TotalSeats = 110 },
-                new CinemaHall { HallName = "Hall D", TotalSeats = 85 },
-                new CinemaHall { HallName = "Hall E", TotalSeats = 120 },
-                new CinemaHall { HallName = "Hall F", TotalSeats = 95 },
-                new CinemaHall { HallName = "Hall G", TotalSeats = 105 },
-                new CinemaHall { HallName = "Hall H", TotalSeats = 80 },
-                new CinemaHall { HallName = "Hall I", TotalSeats = 115 },
-                new CinemaHall { HallName = "Hall J", TotalSeats = 90 }
+                new CinemaHall { HallName = "Phòng A", TotalSeats = 60 },
+                new CinemaHall { HallName = "Phòng B", TotalSeats = 90 },
+                new CinemaHall { HallName = "Phòng C", TotalSeats = 110 },
+                new CinemaHall { HallName = "Phòng D", TotalSeats = 85 },
+                new CinemaHall { HallName = "Phòng E", TotalSeats = 120 },
+                new CinemaHall { HallName = "Phòng F", TotalSeats = 95 },
+                new CinemaHall { HallName = "Phòng G", TotalSeats = 105 },
+                new CinemaHall { HallName = "Phòng H", TotalSeats = 80 },
+                new CinemaHall { HallName = "Phòng I", TotalSeats = 115 },
+                new CinemaHall { HallName = "Phòng J", TotalSeats = 90 }
             };
+
             foreach (var hall in cinemaHalls)
             {
-                for (int i = 1; i <= hall.TotalSeats; i++)
+                int numberOfRows = (int)Math.Ceiling((double)hall.TotalSeats / seatsPerRow);
+
+                for (int i = 0; i < hall.TotalSeats; i++)
                 {
+                    int rowNumber = i / seatsPerRow;
+                    int seatInRow = (i % seatsPerRow) + 1;
+                    string rowLabel = ((char)('A' + rowNumber)).ToString();
+                    string seatNumber = $"{rowLabel}{seatInRow:D2}";
+
+                    // Set seat type based on row
+                    string seatType = (rowNumber == 2 || rowNumber == 3) ? "Ghế VIP" : "Ghế thường";
+
                     hall.Seats.Add(new Seat
                     {
                         HallId = hall.HallId,
-                        SeatNumber = $"S{i:D3}",
-                        SeatType = seatTypes[random.Next(seatTypes.Count)]
+                        SeatNumber = seatNumber,
+                        SeatType = seatType
                     });
                 }
             }
