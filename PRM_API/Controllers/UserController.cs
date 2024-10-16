@@ -24,7 +24,7 @@ namespace PRM_API.Controllers
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginRequest req) 
         {
-            var result = _userService.Login(req.email, req.password);
+            var result = _userService.Login(req.Email, req.Password);
             if (result is null) throw new BadRequestException("Wrong email or password");
             return Ok(ApiResult<UserDTO>.Succeed(_mapper.Map<UserDTO>(result)));
         }

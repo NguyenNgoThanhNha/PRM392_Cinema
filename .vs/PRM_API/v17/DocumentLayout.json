@@ -3,16 +3,8 @@
   "WorkspaceRootPath": "E:\\SE171957-Phuoclx-FPTHCM\\PRM392\\Final Project\\PRM392_Cinema\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{291ECFAC-ECCF-4A6B-81C7-24BCB023A80B}|PRM_API\\PRM_API.csproj|e:\\se171957-phuoclx-fpthcm\\prm392\\final project\\prm392_cinema\\prm_api\\data\\databaseinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{291ECFAC-ECCF-4A6B-81C7-24BCB023A80B}|PRM_API\\PRM_API.csproj|solutionrelative:prm_api\\data\\databaseinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{291ECFAC-ECCF-4A6B-81C7-24BCB023A80B}|PRM_API\\PRM_API.csproj|e:\\se171957-phuoclx-fpthcm\\prm392\\final project\\prm392_cinema\\prm_api\\models\\movie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{291ECFAC-ECCF-4A6B-81C7-24BCB023A80B}|PRM_API\\PRM_API.csproj|solutionrelative:prm_api\\models\\movie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{291ECFAC-ECCF-4A6B-81C7-24BCB023A80B}|PRM_API\\PRM_API.csproj|e:\\se171957-phuoclx-fpthcm\\prm392\\final project\\prm392_cinema\\prm_api\\common\\enum\\movielanguage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{291ECFAC-ECCF-4A6B-81C7-24BCB023A80B}|PRM_API\\PRM_API.csproj|solutionrelative:prm_api\\common\\enum\\movielanguage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{291ECFAC-ECCF-4A6B-81C7-24BCB023A80B}|PRM_API\\PRM_API.csproj|e:\\se171957-phuoclx-fpthcm\\prm392\\final project\\prm392_cinema\\prm_api\\models\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{291ECFAC-ECCF-4A6B-81C7-24BCB023A80B}|PRM_API\\PRM_API.csproj|solutionrelative:prm_api\\models\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +14,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 524,
-          "SelectedChildIndex": 14,
+          "SelectedChildIndex": 12,
           "Children": [
             {
               "$type": "Bookmark",
@@ -74,39 +66,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MovieLanguage.cs",
-              "DocumentMoniker": "E:\\SE171957-Phuoclx-FPTHCM\\PRM392\\Final Project\\PRM392_Cinema\\PRM_API\\Common\\Enum\\MovieLanguage.cs",
-              "RelativeDocumentMoniker": "PRM_API\\Common\\Enum\\MovieLanguage.cs",
-              "ToolTip": "E:\\SE171957-Phuoclx-FPTHCM\\PRM392\\Final Project\\PRM392_Cinema\\PRM_API\\Common\\Enum\\MovieLanguage.cs",
-              "RelativeToolTip": "PRM_API\\Common\\Enum\\MovieLanguage.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-16T04:34:23.794Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Movie.cs",
-              "DocumentMoniker": "E:\\SE171957-Phuoclx-FPTHCM\\PRM392\\Final Project\\PRM392_Cinema\\PRM_API\\Models\\Movie.cs",
-              "RelativeDocumentMoniker": "PRM_API\\Models\\Movie.cs",
-              "ToolTip": "E:\\SE171957-Phuoclx-FPTHCM\\PRM392\\Final Project\\PRM392_Cinema\\PRM_API\\Models\\Movie.cs",
-              "RelativeToolTip": "PRM_API\\Models\\Movie.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAA3wBcAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-16T04:32:32.905Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "DatabaseInitializer.cs",
-              "DocumentMoniker": "E:\\SE171957-Phuoclx-FPTHCM\\PRM392\\Final Project\\PRM392_Cinema\\PRM_API\\Data\\DatabaseInitializer.cs",
-              "RelativeDocumentMoniker": "PRM_API\\Data\\DatabaseInitializer.cs",
-              "ToolTip": "E:\\SE171957-Phuoclx-FPTHCM\\PRM392\\Final Project\\PRM392_Cinema\\PRM_API\\Data\\DatabaseInitializer.cs",
-              "RelativeToolTip": "PRM_API\\Data\\DatabaseInitializer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGMAAAArAAAAAAAAAA==",
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "E:\\SE171957-Phuoclx-FPTHCM\\PRM392\\Final Project\\PRM392_Cinema\\PRM_API\\Models\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "PRM_API\\Models\\ApplicationDbContext.cs",
+              "ToolTip": "E:\\SE171957-Phuoclx-FPTHCM\\PRM392\\Final Project\\PRM392_Cinema\\PRM_API\\Models\\ApplicationDbContext.cs",
+              "RelativeToolTip": "PRM_API\\Models\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAG0AAAAAAAAAAAAqwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-16T04:31:53.206Z",
+              "WhenOpened": "2024-10-16T06:35:54.418Z",
               "EditorCaption": ""
             }
           ]
