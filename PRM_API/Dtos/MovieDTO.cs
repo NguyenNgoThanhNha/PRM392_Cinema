@@ -1,12 +1,10 @@
-﻿using PRM_API.Models;
-
-namespace PRM_API.Dtos
+﻿namespace PRM_API.Dtos
 {
     public class MovieDTO
     {
         public int MovieId { get; set; }
 
-        public string Title { get; set; } = string.Empty;
+        public string Title { get; set; }
 
         public string? Description { get; set; }
 
@@ -16,10 +14,10 @@ namespace PRM_API.Dtos
 
         public decimal? Rating { get; set; }
 
-        public string? Genre { get; set; } = string.Empty;
+        public string? Genre { get; set; }
 
-        public string? Language { get; set; } = string.Empty;
+        public string? Language { get; set; }
 
-        public virtual ICollection<Showtime> Showtimes { get; set; } = new List<Showtime>();
+        /*        public virtual ICollection<Showtime> Showtimes { get; set; } = new List<Showtime>();*/
     }
 }

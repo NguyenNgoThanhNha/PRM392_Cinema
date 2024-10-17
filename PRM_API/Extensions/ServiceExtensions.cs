@@ -1,14 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using PRM_API.Models;
-using PRM_API;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using AutoMapper;
-using PRM_API.Controllers;
-using PRM_API.Middlewares;
-using PRM_API.Repositories;
-using PRM_API.Mappers;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using PRM_API.Data;
+using PRM_API.Mappers;
+using PRM_API.Middlewares;
+using PRM_API.Models;
+using PRM_API.Repositories;
 using PRM_API.Services;
 using PRM_API.Services.Impl;
 
@@ -33,15 +29,23 @@ namespace PRM_API.Extensions
 
             services.AddAuthorization();
 
-            var connectionString = configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(connectionString));
+
+
+
+            services.AddDbContext<ApplicationDbContext>(opt =>
+            {
+                var connectionString = configuration.GetConnectionString("DefaultConnectionString");
+                Console.WriteLine($"MSSQL_DbConnection DbConnect: {connectionString}");
+                opt.UseSqlServer(connectionString);
+            });
 
             services.AddScoped(typeof(IRepository<,>), typeof(GenericRepository<,>));
             services.AddScoped<DatabaseInitializer>();
             services.AddScoped<UserService>();
+            services.AddScoped<BookingService>();
+            services.AddScoped<SeatService>();
             services.AddScoped<IMovieService, MovieService>();
-           
+
             return services;
         }
     }
