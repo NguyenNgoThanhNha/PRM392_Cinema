@@ -1,7 +1,4 @@
-﻿using PRM_API.Models;
-using System.Text.Json.Serialization;
-
-namespace PRM_API.Dtos
+﻿namespace PRM_API.Dtos
 {
     public class ShowtimeDTO
     {
@@ -13,13 +10,10 @@ namespace PRM_API.Dtos
 
         public DateTime ShowDate { get; set; }
 
-        /// <summary>
-        /// Ae nao` viet phan nay` viet DTO cho no r bo cmt nh
-        /// </summary>
-        //public virtual ICollection<Booking> Bookings { get; set; } = new List<Booking>();
-        //public virtual CinemaHall Hall { get; set; } = null!;
+        /*        public virtual ICollection<Booking> Bookings { get; set; } = new List<Booking>();*/
 
-        [JsonIgnore]
-        public virtual MovieDTO Movie { get; set; } = null!;
+        public virtual HallDTO? Hall { get; set; }
+
+        public virtual MovieDTO? Movie { get; set; }
     }
 }
