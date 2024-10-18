@@ -31,7 +31,7 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<User> Users { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer(GetConnectionString(), o
             => o.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery));
 
@@ -43,7 +43,7 @@ public partial class ApplicationDbContext : DbContext
             .Build();
 
         return configuration.GetConnectionString("DefaultConnectionString")!;
-    }
+    }*/
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

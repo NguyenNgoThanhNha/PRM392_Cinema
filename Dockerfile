@@ -47,6 +47,7 @@ WORKDIR /app
 
 # Install globalization libraries (icu) to support full globalization
 RUN apk add --no-cache icu-libs
+ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
 
 # Copy everything needed to run the app from the "build" stage.
 COPY --from=build /app .

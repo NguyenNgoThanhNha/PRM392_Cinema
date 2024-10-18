@@ -13,8 +13,7 @@ services:
       context: .
       target: final
     environment:
-      - ConnectionStrings__DefaultConnectionString=Server=database,1434;Database=PRM392_CinemaManagement;User ID=sa;Password=P@ssw0rd123;
-
+      - ConnectionStrings__DefaultConnectionString=Server=database;Database=PRM392_CinemaManagement;User ID=sa;Password=P@ssw0rd123;TrustServerCertificate=True;
     ports:
       - 8080:8080
     depends_on:
