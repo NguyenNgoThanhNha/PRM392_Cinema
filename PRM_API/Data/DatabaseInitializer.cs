@@ -70,7 +70,7 @@ using PRM_API.Models;
                     //// Animal Types
                     if (!dbContext.CinemaHalls.Any()) await SeedCinemaHallAsync();
                     //// Animal
-                    //if (!dbContext.FoodBeverages.Any()) await SeedFoodBeverageAsync();
+                    if (!dbContext.FoodBeverages.Any()) await SeedFoodBeverageAsync();
                     //// Delivery Order Details
                     if (!dbContext.Movies.Any()) await SeedMovieAsync();
                     //if (!dbContext.Seats.Any()) await SeedSeatAsync();
@@ -165,10 +165,49 @@ using PRM_API.Models;
             await dbContext.SaveChangesAsync();
         }
 
-        //private async Task SeedFoodBeverageAsync()
-        //{
-
-        //}
+        private async Task SeedFoodBeverageAsync()
+        {
+            List<FoodBeverage> fabList = new List<FoodBeverage>();
+            FoodBeverage fab1 = new FoodBeverage()
+            {   Name = "Bắp phô mai nhỏ",
+                Description = "size S",
+                Price = 20,
+            };
+            FoodBeverage fab2 = new FoodBeverage()
+            {   Name = "Bắp phô mai trung bình",
+                Description = "size M",
+                Price = 40,
+            };
+            
+            FoodBeverage fab3 = new FoodBeverage()
+            {   Name = "Nước ngọt lớn",
+                Description = "size L",
+                Price = 45,
+            };
+            FoodBeverage fab4 = new FoodBeverage()
+            {   Name = "Nước ngọt nhỏ",
+                Description = "size S",
+                Price = 20,
+            };
+            FoodBeverage fab5 = new FoodBeverage()
+            {   Name = "Nước ngọt trung bình",
+                Description = "size M",
+                Price = 40,
+            };
+            
+            FoodBeverage fab6 = new FoodBeverage()
+            {   Name = "Nước ngọt lớn",
+                Description = "size L",
+                Price = 45,
+            };
+            
+            fabList.AddRange(new List<FoodBeverage>()
+            {
+                fab1,fab2,fab3,fab4,fab5,fab6
+            });
+            await dbContext.FoodBeverages.AddRangeAsync(fabList);
+            await dbContext.SaveChangesAsync();
+        }
 
         private async Task SeedCinemaHallAsync()
         {

@@ -41,6 +41,7 @@ namespace PRM_API.Extensions
             services.AddScoped<DatabaseInitializer>();
             services.AddScoped<UserService>();
             services.AddScoped<IMovieService, MovieService>();
+            services.AddScoped<IFABService,FABService>();
            
             return services;
         }
