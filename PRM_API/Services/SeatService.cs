@@ -39,9 +39,10 @@ public class SeatService
         return _mapper.Map<List<ShowtimeDTO>>(showTimeMovie);
     }
 
-    public async Task<List<SeatDTO>> GetFreeSeatMovie(int hallId)
+    public async Task<List<SeatDTO>> GetFreeSeatMovie(int showTimeId)
     {
-        var listSeat = await _seatRepository.FindByCondition(x => x.HallId == hallId).ToListAsync();
+        var showTime = await _showTimeRepository.GetByIdAsync(showTimeId);
+        var listSeat = await _seatRepository.FindByCondition(x => x.HallId == showTime.HallId).ToListAsync();
         if (listSeat.Equals(null) || !listSeat.Any())
         {
             return null;
