@@ -51,12 +51,12 @@ namespace PRM_API.Controllers
                 return BadRequest(ApiResult<List<string>>.Error(errors));
             }
 
-            var listSeat = await _seatService.GetFreeSeatMovie(request.hallId);
+            var listSeat = await _seatService.GetFreeSeatMovie(request.showTimeId);
             if (listSeat.Equals(null) || !listSeat.Any())
             {
                 return Ok(ApiResult<MessageResponse>.Succeed(new MessageResponse()
                 {
-                    message = $"List seat of movie with hall {request.hallId} are null!"
+                    message = $"List seat of movie with showtime {request.showTimeId} are null!"
                 }));
             }
             
