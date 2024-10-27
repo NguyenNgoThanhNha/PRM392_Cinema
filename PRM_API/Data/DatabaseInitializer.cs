@@ -1,4 +1,4 @@
-﻿    using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using PRM_API.Common.Enum;
 using PRM_API.Extensions;
 using PRM_API.Models;
@@ -13,7 +13,8 @@ using PRM_API.Models;
         }
         public class DatabaseInitializer(ApplicationDbContext dbContext) : IDatabaseInitializer
         {
-            public async Task InitializeAsync()
+
+        public async Task InitializeAsync()
             {
                 try
                 {
@@ -43,19 +44,19 @@ using PRM_API.Models;
                 }
             }
 
-            public async Task SeedAsync()
+        public async Task SeedAsync()
+        {
+            try
             {
-                try
-                {
-                    await TrySeedAsync();
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception(ex.Message);
-                }
+                await TrySeedAsync();
             }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
 
-            public async Task TrySeedAsync()
+        public async Task TrySeedAsync()
             {
                 try
                 {
@@ -141,7 +142,7 @@ using PRM_API.Models;
                     Title = title,
                     Description = description,
                     ReleaseDate = DateOnly.FromDateTime(DateTime.Now.AddDays(-random.Next(100, 1000))),
-                    Duration = random.Next(80, 180), 
+                    Duration = (int)(Math.Round(random.Next(80, 180) / 10.0) * 10), 
                     Rating = Math.Round((decimal)(random.NextDouble() * 4 + 1), 1), 
                     Genre = movieGenres[random.Next(movieGenres.Count)].ToString(),
                     Language = language.ToString()
@@ -150,10 +151,15 @@ using PRM_API.Models;
                 var showtimeCount = random.Next(3, 6);
                 for (int j = 0; j < showtimeCount; j++)
                 {
+                    var showDateTime = DateTime.Now.AddDays(random.Next(1, 30)).AddHours(random.Next(10, 22));
+                        
+                    decimal seatPrice = (showDateTime.Hour >= 6 && showDateTime.Hour < 18) ? 50000M : 70000M;
+
                     var showtime = new Showtime
                     {
-                        ShowDate = DateTime.Now.AddDays(random.Next(1, 30)).AddHours(random.Next(10, 22)),
-                        Hall = cinemaHalls[random.Next(cinemaHalls.Count)] 
+                        ShowDate = showDateTime,
+                        Hall = cinemaHalls[random.Next(cinemaHalls.Count)],
+                        SeatPrice = seatPrice
                     };
                     movie.Showtimes.Add(showtime);
                 }
@@ -170,53 +176,111 @@ using PRM_API.Models;
 
         //}
 
+        // private async Task SeedCinemaHallAsync()
+        // {
+        //     Random random = new Random();
+        //     //List<string> seatTypes = new List<string> { "Ghế thường", "Ghế VIP" };
+
+        //     int seatsPerRow = 12;
+
+        //     List<CinemaHall> cinemaHalls = new()
+        //     {
+        //         new CinemaHall { HallName = "Phòng A", TotalSeats = 60 },
+        //         new CinemaHall { HallName = "Phòng B", TotalSeats = 90 },
+        //         new CinemaHall { HallName = "Phòng C", TotalSeats = 110 },
+        //         new CinemaHall { HallName = "Phòng D", TotalSeats = 85 },
+        //         new CinemaHall { HallName = "Phòng E", TotalSeats = 120 },
+        //         new CinemaHall { HallName = "Phòng F", TotalSeats = 95 },
+        //         new CinemaHall { HallName = "Phòng G", TotalSeats = 105 },
+        //         new CinemaHall { HallName = "Phòng H", TotalSeats = 80 },
+        //         new CinemaHall { HallName = "Phòng I", TotalSeats = 115 },
+        //         new CinemaHall { HallName = "Phòng J", TotalSeats = 90 }
+        //     };
+
+        //     foreach (var hall in cinemaHalls)
+        //     {
+        //         int numberOfRows = (int)Math.Ceiling((double)hall.TotalSeats / seatsPerRow);
+
+        //         for (int i = 0; i < hall.TotalSeats; i++)
+        //         {
+        //             int rowNumber = i / seatsPerRow;
+        //             int seatInRow = (i % seatsPerRow) + 1;
+        //             string rowLabel = ((char)('A' + rowNumber)).ToString();
+        //             string seatNumber = $"{rowLabel}{seatInRow:D2}";
+
+        //             // Set seat type based on row
+        //             string seatType = (rowNumber == 2 || rowNumber == 3) ? "Ghế VIP" : "Ghế thường";
+
+        //             hall.Seats.Add(new Seat
+        //             {
+        //                 HallId = hall.HallId,
+        //                 SeatNumber = seatNumber,
+        //                 SeatType = seatType
+        //             });
+        //         }
+        //     }
+
+        //     dbContext.CinemaHalls.AddRange(cinemaHalls);
+        //     await dbContext.SaveChangesAsync();
+        // }
+
+
         private async Task SeedCinemaHallAsync()
         {
+            string[] seatTypes = new []{ SeatType.Normal.GetDescription(), SeatType.VIP.GetDescription() };
             Random random = new Random();
-            //List<string> seatTypes = new List<string> { "Ghế thường", "Ghế VIP" };
-
             int seatsPerRow = 12;
+
+            var hallTypes = new Dictionary<string, (int TotalColumns, Dictionary<int, List<int>> EmptySeatsPerRow)>
+            {
+                ["Type1"] = (12, new Dictionary<int, List<int>>()),
+                ["Type2"] = (14, new Dictionary<int, List<int>> { { 1, new List<int> { 3, 4 } }, { 2, new List<int> { 6 } } }), 
+                ["Type3"] = (16, new Dictionary<int, List<int>> { { 0, new List<int> { 1, 2, 13 } }, { 1, new List<int> { 5, 10 } } }) 
+            };
 
             List<CinemaHall> cinemaHalls = new()
             {
-                new CinemaHall { HallName = "Phòng A", TotalSeats = 60 },
-                new CinemaHall { HallName = "Phòng B", TotalSeats = 90 },
-                new CinemaHall { HallName = "Phòng C", TotalSeats = 110 },
-                new CinemaHall { HallName = "Phòng D", TotalSeats = 85 },
-                new CinemaHall { HallName = "Phòng E", TotalSeats = 120 },
-                new CinemaHall { HallName = "Phòng F", TotalSeats = 95 },
-                new CinemaHall { HallName = "Phòng G", TotalSeats = 105 },
-                new CinemaHall { HallName = "Phòng H", TotalSeats = 80 },
-                new CinemaHall { HallName = "Phòng I", TotalSeats = 115 },
-                new CinemaHall { HallName = "Phòng J", TotalSeats = 90 }
+                new CinemaHall { HallName = "Phòng A", TotalSeats = 60, HallType = "Type1" },
+                new CinemaHall { HallName = "Phòng B", TotalSeats = 90, HallType = "Type2" },
+                new CinemaHall { HallName = "Phòng C", TotalSeats = 110, HallType = "Type3" },
             };
 
             foreach (var hall in cinemaHalls)
             {
                 int numberOfRows = (int)Math.Ceiling((double)hall.TotalSeats / seatsPerRow);
+                var layout = hallTypes[hall.HallType];
 
-                for (int i = 0; i < hall.TotalSeats; i++)
+                for (int row = 0; row < numberOfRows; row++)
                 {
-                    int rowNumber = i / seatsPerRow;
-                    int seatInRow = (i % seatsPerRow) + 1;
-                    string rowLabel = ((char)('A' + rowNumber)).ToString();
-                    string seatNumber = $"{rowLabel}{seatInRow:D2}";
-
-                    // Set seat type based on row
-                    string seatType = (rowNumber == 2 || rowNumber == 3) ? "Ghế VIP" : "Ghế thường";
-
-                    hall.Seats.Add(new Seat
+                    string rowLabel = ((char)('A' + row)).ToString();
+                    for (int col = 0; col < layout.TotalColumns; col++)
                     {
-                        HallId = hall.HallId,
-                        SeatNumber = seatNumber,
-                        SeatType = seatType
-                    });
+                        bool isOff = layout.EmptySeatsPerRow.ContainsKey(row) && layout.EmptySeatsPerRow[row].Contains(col);
+
+                        string seatType = (row == 2 || row == 3) 
+                            ? seatTypes[1] 
+                            : seatTypes[0];
+                            
+                        string seatNumber = $"{rowLabel}{(col + 1):D2}";
+
+                        hall.Seats.Add(new Seat
+                        {
+                            HallId = hall.HallId,
+                            SeatNumber = seatNumber,
+                            SeatType = isOff ? null! : seatType,
+                            ColIndex = row,
+                            SeatIndex = col,
+                            IsOff = isOff,
+                            IsSold = false
+                        });
+                    }
                 }
             }
 
             dbContext.CinemaHalls.AddRange(cinemaHalls);
             await dbContext.SaveChangesAsync();
         }
+
 
         //private async Task SeedBookingSeatAsync()
         //{

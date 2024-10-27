@@ -6,11 +6,19 @@ public class SeatDTO
 
     public int HallId { get; set; }
 
-    public string SeatNumber { get; set; }
+    public string SeatNumber { get; set; } = null!;
 
-    public string SeatType { get; set; }
+    public string SeatType { get; set; } = null!;
 
-    /*    public virtual ICollection<BookingSeat> BookingSeats { get; set; } = new List<BookingSeat>();*/
+    public bool IsOff { get; set; }
 
-    public virtual HallDTO? Hall { get; set; }
+    public bool IsSold { get; set; }
+
+    public int SeatIndex { get; set; }
+
+    public int ColIndex { get; set; }
+
+    // public virtual ICollection<BookingSeat> BookingSeats { get; set; } = new List<BookingSeat>();
+
+    public virtual HallDTO? Hall { get; set; } = null!;
 }

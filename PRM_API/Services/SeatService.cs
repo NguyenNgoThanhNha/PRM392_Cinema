@@ -4,60 +4,38 @@ using PRM_API.Dtos;
 using PRM_API.Exceptions;
 using PRM_API.Models;
 using PRM_API.Repositories;
+using PRM_API.Services.Impl;
 
 namespace PRM_API.Services;
 
 public class SeatService
 {
     private readonly IRepository<Seat, int> _seatRepository;
-    private readonly IRepository<Showtime, int> _showTimeRepository;
+    
+    private readonly IShowtimeService _showtimeService;
     private readonly IMapper _mapper;
-    private readonly IRepository<BookingSeat, int> _bookingSeatRepository;
 
     public SeatService(IRepository<Seat, int> seatRepository,
-        IRepository<Showtime, int> showTimeRepository,
-        IMapper mapper,
-        IRepository<BookingSeat, int> bookingSeatRepository)
+        IShowtimeService showtimeService,
+        IMapper mapper)
     {
         _seatRepository = seatRepository;
-        _showTimeRepository = showTimeRepository;
         _mapper = mapper;
-        _bookingSeatRepository = bookingSeatRepository;
+        _showtimeService = showtimeService;
     }
 
-    public async Task<List<ShowtimeDTO>> GetShowTimeMovie(int movieId)
+    public async Task<List<SeatDTO>> GetAllByShowTimeId(int showtimeId)
     {
-        var showTimeMovie = await _showTimeRepository.FindByCondition(x => x.MovieId == movieId)
-            .Include(x => x.Movie)
-            .Include(x => x.Hall)
-            .ToListAsync();
-        if (showTimeMovie.Equals(null))
-        {
-            throw new BadRequestException("Showtime of movie not found!");
-        }
-
-        return _mapper.Map<List<ShowtimeDTO>>(showTimeMovie);
-    }
-
-    public async Task<List<SeatDTO>> GetFreeSeatMovie(int showTimeId)
-    {
-        var showTime = await _showTimeRepository.GetByIdAsync(showTimeId);
-        var listSeat = await _seatRepository.FindByCondition(x => x.HallId == showTime.HallId).ToListAsync();
-        if (listSeat.Equals(null) || !listSeat.Any())
-        {
-            return null;
-        }
-
-        var listSeatBooked = await _bookingSeatRepository.GetAll().ToListAsync();
-
-        if (listSeatBooked.Any())
-        {
-            var freeSeats = listSeat
-                .Where(seat => !listSeatBooked.Any(bookedSeat => bookedSeat.SeatId == seat.SeatId))
-                .ToList();
-
-            return _mapper.Map<List<SeatDTO>>(freeSeats);
-        }
-        return _mapper.Map<List<SeatDTO>>(listSeat);
+        // Check exist showtime
+        var showtimeDTO = await _showtimeService.GetAsync(showtimeId);
+        if(showtimeDTO is null) return new();
+    
+        return _mapper.Map<List<SeatDTO>>(
+            // Building query from IQueryable 
+            _seatRepository.GetAll()
+            // With conditions 
+            .Where(s => s.HallId == showtimeDTO.HallId)
+            // Convert to list
+            .ToList());
     }
 }
