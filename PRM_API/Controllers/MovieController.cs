@@ -63,7 +63,6 @@ namespace PRM_API.Controllers
             return Ok(movieDTO);
         }
 
-
         [HttpGet(ApiRoute.Movie.GetAllGenre, Name = nameof(GetAllMovieGenreAsync))]
         public async Task<IActionResult> GetAllMovieGenreAsync()
         {

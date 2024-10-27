@@ -15,4 +15,14 @@ public class ApiRoute
         public const string GetAllGenre = Base + "/movie-genres";
         public const string GetAllLang = Base + "/movie-languages";
     }
+
+    public static class Seat
+    {
+        public const string GetAll = Base + "/seats";
+    }
+
+    public static class ShowTime
+    {
+        public const string GetAll = Base + "/showtimes";
+    }
 }

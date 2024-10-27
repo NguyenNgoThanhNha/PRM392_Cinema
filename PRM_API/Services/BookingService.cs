@@ -1,4 +1,6 @@
+using System.Collections.Immutable;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using PRM_API.Common.Enum;
 using PRM_API.Common.Payloads.Request;
 using PRM_API.Dtos;
@@ -87,4 +89,16 @@ public class BookingService
         return null;
     }
 
+    public async Task<List<BookingSeatDTO>> GetBookedSeatsByShowTimeAsync(int showtimeId)
+    {
+        // Get booking order
+        var booking = await _bookingRepository
+            .FindByCondition(b => b.ShowtimeId == showtimeId)
+            .FirstOrDefaultAsync(); 
+        if(booking is null) return new();
+
+        var query = _bookingSeatRepository.GetAll();
+
+        return _mapper.Map<List<BookingSeatDTO>>(query.Where(bs => bs.BookingId == booking.BookingId).ToList());
+    }
 }

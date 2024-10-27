@@ -18,6 +18,8 @@ public partial class Showtime
 
     public virtual CinemaHall Hall { get; set; } = null!;
 
+    public decimal SeatPrice { get; set; }
+
     [JsonIgnore]
     public virtual Movie Movie { get; set; } = null!;
 }

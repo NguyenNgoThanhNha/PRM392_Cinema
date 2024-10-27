@@ -30,8 +30,6 @@ namespace PRM_API.Extensions
             services.AddAuthorization();
 
 
-
-
             services.AddDbContext<ApplicationDbContext>(opt =>
             {
                 var connectionString = configuration.GetConnectionString("DefaultConnectionString");
@@ -44,6 +42,7 @@ namespace PRM_API.Extensions
             services.AddScoped<UserService>();
             services.AddScoped<BookingService>();
             services.AddScoped<SeatService>();
+            services.AddScoped<IShowtimeService, ShowtimeService>();
             services.AddScoped<IMovieService, MovieService>();
 
             return services;

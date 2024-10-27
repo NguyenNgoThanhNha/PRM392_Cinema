@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace PRM_API.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialDatabase : Migration
+    public partial class Intitialdatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,6 +18,7 @@ namespace PRM_API.Migrations
                     hall_id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     hall_name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    hall_type = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     total_seats = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -84,7 +85,11 @@ namespace PRM_API.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     hall_id = table.Column<int>(type: "int", nullable: false),
                     seat_number = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
-                    seat_type = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+                    seat_type = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    is_off = table.Column<bool>(type: "bit", nullable: false),
+                    is_sold = table.Column<bool>(type: "bit", nullable: false),
+                    SeatIndex = table.Column<int>(type: "int", nullable: false),
+                    ColIndex = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -104,7 +109,8 @@ namespace PRM_API.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     movie_id = table.Column<int>(type: "int", nullable: false),
                     hall_id = table.Column<int>(type: "int", nullable: false),
-                    show_date = table.Column<DateTime>(type: "datetime", nullable: false)
+                    show_date = table.Column<DateTime>(type: "datetime", nullable: false),
+                    seat_price = table.Column<decimal>(type: "decimal(10,2)", nullable: false)
                 },
                 constraints: table =>
                 {

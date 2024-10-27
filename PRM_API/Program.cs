@@ -40,11 +40,11 @@ public class Program
          }*/
          var connectionString = builder.Configuration.GetConnectionString("DefaultConnectionString");
          Console.WriteLine($"MSSQL_DbConnection DbConnect Program: {connectionString}");
-         await using (var scope = app.Services.CreateAsyncScope())
-         {
-             var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-             await dbContext.Database.MigrateAsync();
-         }
+        //  await using (var scope = app.Services.CreateAsyncScope())
+        //  {
+        //      var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        //      await dbContext.Database.MigrateAsync();
+        //  }
 
         app.UseSwagger();
         app.UseSwaggerUI();

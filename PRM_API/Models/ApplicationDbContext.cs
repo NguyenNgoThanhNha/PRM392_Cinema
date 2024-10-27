@@ -131,6 +131,10 @@ public partial class ApplicationDbContext : DbContext
                 .IsRequired()
                 .HasMaxLength(100)
                 .HasColumnName("hall_name");
+            entity.Property(e => e.HallType)
+                .IsRequired()
+                .HasMaxLength(100)
+                .HasColumnName("hall_type");
             entity.Property(e => e.TotalSeats).HasColumnName("total_seats");
         });
 
@@ -192,9 +196,11 @@ public partial class ApplicationDbContext : DbContext
                 .HasMaxLength(10)
                 .HasColumnName("seat_number");
             entity.Property(e => e.SeatType)
-                .IsRequired()
+                .IsRequired(false)
                 .HasMaxLength(50)
                 .HasColumnName("seat_type");
+            entity.Property(e => e.IsOff).HasColumnName("is_off");
+            entity.Property(e => e.IsSold).HasColumnName("is_sold");
 
             entity.HasOne(d => d.Hall).WithMany(p => p.Seats)
                 .HasForeignKey(d => d.HallId)
@@ -212,6 +218,9 @@ public partial class ApplicationDbContext : DbContext
             entity.Property(e => e.ShowDate)
                 .HasColumnType("datetime")
                 .HasColumnName("show_date");
+            entity.Property(e => e.SeatPrice)
+                .HasColumnType("decimal(10, 2)")
+                .HasColumnName("seat_price");
 
             entity.HasOne(d => d.Hall).WithMany(p => p.Showtimes)
                 .HasForeignKey(d => d.HallId)
