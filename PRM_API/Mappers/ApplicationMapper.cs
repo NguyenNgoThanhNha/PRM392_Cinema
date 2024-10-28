@@ -10,6 +10,10 @@ public class ApplicationMapper : Profile
     {
         CreateMap<User, UserDTO>().ReverseMap();
         CreateMap<Movie, MovieDTO>().ReverseMap();
-
+        CreateMap<Booking, BookingDTO>().ReverseMap();
+        CreateMap<Seat, SeatDTO>().ReverseMap();
+        CreateMap<BookingSeat, BookingSeatDTO>().ReverseMap();
+        CreateMap<CinemaHall, HallDTO>().ReverseMap();
+        CreateMap<Showtime, ShowtimeDTO>().ReverseMap();
     }
 }

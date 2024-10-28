@@ -9,6 +9,8 @@ public partial class CinemaHall
 
     public string HallName { get; set; } = null!;
 
+    public string HallType { get; set; } = null!;
+
     public int TotalSeats { get; set; }
 
     public virtual ICollection<Seat> Seats { get; set; } = new List<Seat>();

@@ -1,5 +1,3 @@
-using PRM_API.Models;
-
 namespace PRM_API.Dtos;
 
 public class BookingDTO
@@ -14,11 +12,13 @@ public class BookingDTO
 
     public decimal TotalPrice { get; set; }
 
-    public string Status { get; set; } = null!;
+    public string Status { get; set; }
 
-    public virtual ICollection<BookingFoodBeverageDTO> BookingFoodBeverages { get; set; } = new List<BookingFoodBeverageDTO>();
+    /*    public virtual ICollection<BookingFoodBeverage>? BookingFoodBeverages { get; set; }
 
-    public virtual ICollection<BookingSeat> BookingSeats { get; set; } = new List<BookingSeat>();
+        public virtual ICollection<BookingSeat>? BookingSeats { get; set; } = new List<BookingSeat>();*/
 
-    public virtual Showtime Showtime { get; set; } = null!;
+    public virtual ShowtimeDTO? Showtime { get; set; }
+
+    public virtual UserDTO? User { get; set; }
 }

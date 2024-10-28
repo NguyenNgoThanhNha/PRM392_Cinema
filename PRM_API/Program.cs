@@ -10,9 +10,9 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        // C?u hình các d?ch v?
+        // C?u hï¿½nh cï¿½c d?ch v?
         builder.Services.AddInfrastructure(builder.Configuration);
-     
+
         builder.Services.AddCors(option =>
            option.AddPolicy("CORS", builder =>
                builder.AllowAnyMethod().AllowAnyHeader().AllowCredentials().SetIsOriginAllowed((host) => true)));
@@ -21,20 +21,31 @@ public class Program
 
         app.Lifetime.ApplicationStarted.Register(async () =>
         {
-            // Database Initialiser 
+           // Database Initialiser 
             await app.InitialiseDatabaseAsync();
         });
-        if (app.Environment.IsDevelopment())
-        {
-            await using (var scope = app.Services.CreateAsyncScope())
-            {
-                var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-                await dbContext.Database.MigrateAsync();
-            }
+        
+         /*if (app.Environment.IsDevelopment())
+         {
+             var connectionString = builder.Configuration.GetConnectionString("DefaultConnectionString");
+             Console.WriteLine($"MSSQL_DbConnection DbConnect Program: {connectionString}");
+             await using (var scope = app.Services.CreateAsyncScope())
+             {
+                 var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                 await dbContext.Database.MigrateAsync();
+             }
 
-            app.UseSwagger();
-            app.UseSwaggerUI();
-        }
+             app.UseSwagger();
+             app.UseSwaggerUI();
+         }*/
+         var connectionString = builder.Configuration.GetConnectionString("DefaultConnectionString");
+         Console.WriteLine($"MSSQL_DbConnection DbConnect Program: {connectionString}");
+        //  await using (var scope = app.Services.CreateAsyncScope())
+        //  {
+        //      var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        //      await dbContext.Database.MigrateAsync();
+        //  }
+
         app.UseSwagger();
         app.UseSwaggerUI();
 

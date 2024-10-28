@@ -139,6 +139,12 @@ namespace PRM_API.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasColumnName("hall_name");
 
+                    b.Property<string>("HallType")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)")
+                        .HasColumnName("hall_type");
+
                     b.Property<int>("TotalSeats")
                         .HasColumnType("int")
                         .HasColumnName("total_seats");
@@ -234,9 +240,23 @@ namespace PRM_API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SeatId"));
 
+                    b.Property<int>("ColIndex")
+                        .HasColumnType("int");
+
                     b.Property<int>("HallId")
                         .HasColumnType("int")
                         .HasColumnName("hall_id");
+
+                    b.Property<bool>("IsOff")
+                        .HasColumnType("bit")
+                        .HasColumnName("is_off");
+
+                    b.Property<bool>("IsSold")
+                        .HasColumnType("bit")
+                        .HasColumnName("is_sold");
+
+                    b.Property<int>("SeatIndex")
+                        .HasColumnType("int");
 
                     b.Property<string>("SeatNumber")
                         .IsRequired()
@@ -245,7 +265,6 @@ namespace PRM_API.Migrations
                         .HasColumnName("seat_number");
 
                     b.Property<string>("SeatType")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("seat_type");
@@ -273,6 +292,10 @@ namespace PRM_API.Migrations
                     b.Property<int>("MovieId")
                         .HasColumnType("int")
                         .HasColumnName("movie_id");
+
+                    b.Property<decimal>("SeatPrice")
+                        .HasColumnType("decimal(10, 2)")
+                        .HasColumnName("seat_price");
 
                     b.Property<DateTime>("ShowDate")
                         .HasColumnType("datetime")
