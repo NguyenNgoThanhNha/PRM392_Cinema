@@ -192,13 +192,13 @@ using PRM_API.Models;
             FoodBeverage fab5 = new FoodBeverage()
             {   Name = "Nước ngọt trung bình",
                 Description = "size M",
-                Price = 40,
+                Price = 30,
             };
             
             FoodBeverage fab6 = new FoodBeverage()
             {   Name = "Nước ngọt lớn",
                 Description = "size L",
-                Price = 45,
+                Price = 35,
             };
             
             fabList.AddRange(new List<FoodBeverage>()

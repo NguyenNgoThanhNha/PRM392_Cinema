@@ -1,3 +1,5 @@
+using Microsoft.VisualBasic;
+
 namespace PRM_API.Common.Payloads;
 
 public class ApiRoute
@@ -19,8 +21,9 @@ public class ApiRoute
     {
         public const string GetAll = Base + "/fab";
         public const string GetById = Base + "/fab/{id}";
-        public const string Create = Base + "/fab";
-        public const string Update = Base + "/fab";
-        public const string Delete = Base + "/fab/{id}";
+        public const string GetByBookingId = Base + "/fab/order/{orderId}";
+        public const string CreateFABOrder = Base + "/fab/order/{orderId}";
+        public const string UpdateFABOrder = Base + "/fab/order/{orderId}";
+        public const string DeleteFABOrder = Base + "fab/order/{orderId}";
     }
 }
