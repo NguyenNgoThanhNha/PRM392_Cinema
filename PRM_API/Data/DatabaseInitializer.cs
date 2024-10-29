@@ -177,34 +177,34 @@ using PRM_API.Models;
             FoodBeverage fab1 = new FoodBeverage()
             {   Name = "Bắp phô mai nhỏ",
                 Description = "size S",
-                Price = 20,
+                Price = 20000,
             };
             FoodBeverage fab2 = new FoodBeverage()
             {   Name = "Bắp phô mai trung bình",
                 Description = "size M",
-                Price = 40,
+                Price = 40000,
             };
             
             FoodBeverage fab3 = new FoodBeverage()
             {   Name = "Nước ngọt lớn",
                 Description = "size L",
-                Price = 45,
+                Price = 45000,
             };
             FoodBeverage fab4 = new FoodBeverage()
             {   Name = "Nước ngọt nhỏ",
                 Description = "size S",
-                Price = 20,
+                Price = 20000,
             };
             FoodBeverage fab5 = new FoodBeverage()
             {   Name = "Nước ngọt trung bình",
                 Description = "size M",
-                Price = 30,
+                Price = 30000,
             };
             
             FoodBeverage fab6 = new FoodBeverage()
             {   Name = "Nước ngọt lớn",
                 Description = "size L",
-                Price = 35,
+                Price = 35000,
             };
             
             fabList.AddRange(new List<FoodBeverage>()

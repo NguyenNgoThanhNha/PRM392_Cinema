@@ -49,8 +49,8 @@ public class FABController(IFABService fabService) :ControllerBase
         }));
     }
 
-    [HttpDelete(ApiRoute.FAB.DeleteFABOrder)]
-    public async Task<IActionResult> Delete([FromRoute] int orderId, [FromBody] UpdateBookingFABRequest req)
+    [HttpPut(ApiRoute.FAB.UpdateFABOrder)]
+    public async Task<IActionResult> Update([FromRoute] int orderId, [FromBody] UpdateBookingFABRequest req)
     {
         bool result = await fabService.UpdateFABOrder(orderId, req);
         if (!result) throw new BadRequestException("Nothing to update or something went wrong");
@@ -59,5 +59,16 @@ public class FABController(IFABService fabService) :ControllerBase
             Message = "Update Successfully"
         }));
     }
-    
+
+    [HttpDelete(ApiRoute.FAB.DeleteFABOrder)]
+    public async Task<IActionResult> Delete([FromRoute] int orderId)
+    {
+        bool result = await fabService.DeleteFABOrder(orderId);
+        if (!result) throw new BadRequestException("something went wrong");
+        return Ok(ApiResult<object>.Succeed(new
+        {
+            Message = "Delete Successfully"
+        }));
+    }
+
 }

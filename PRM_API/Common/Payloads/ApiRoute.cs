@@ -34,6 +34,6 @@ public class ApiRoute
         public const string GetByBookingId = Base + "/fab/order/{orderId}";
         public const string CreateFABOrder = Base + "/fab/order/{orderId}";
         public const string UpdateFABOrder = Base + "/fab/order/{orderId}";
-        public const string DeleteFABOrder = Base + "fab/order/{orderId}";
+        public const string DeleteFABOrder = Base + "/fab/order/{orderId}";
     }
 }

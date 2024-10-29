@@ -10,14 +10,14 @@ using PRM_API.Services.Impl;
 
 namespace PRM_API.Services;
 
-public class FABService :IFABService
+public class FABService : IFABService
 {
     private readonly IRepository<FoodBeverage, int> _fAbRepository;
     private readonly IMapper _mapper;
     private readonly IRepository<BookingFoodBeverage, int> _fabOrderRepository;
 
-    public FABService(IRepository<FoodBeverage,int> fAbRepository,IMapper mapper,
-        IRepository<BookingFoodBeverage,int> fabOrderRepository)
+    public FABService(IRepository<FoodBeverage, int> fAbRepository, IMapper mapper,
+        IRepository<BookingFoodBeverage, int> fabOrderRepository)
     {
         _fAbRepository = fAbRepository;
         _mapper = mapper;
@@ -25,19 +25,19 @@ public class FABService :IFABService
     }
     public async Task<IEnumerable<FoodBeverageDTO>> GetAllFAB()
     {
-        var result =await _fAbRepository.GetAll().ToListAsync();
+        var result = await _fAbRepository.GetAll().ToListAsync();
         if (!result.Any()) throw new NotFoundException("There is no FAB yet");
         return _mapper.Map<List<FoodBeverageDTO>>(result);
     }
 
     public async Task<FoodBeverageDTO> GetFABWithId(int id)
     {
-        var result =await _fAbRepository.FindByCondition(fab => fab.FoodId == id).FirstOrDefaultAsync();
+        var result = await _fAbRepository.FindByCondition(fab => fab.FoodId == id).FirstOrDefaultAsync();
         if (result is null) throw new NotFoundException("There is no FAB matched");
         return _mapper.Map<FoodBeverageDTO>(result);
     }
 
-    public async Task CreateFABOrder(int orderId,CreateFABOrderRequest req)
+    public async Task CreateFABOrder(int orderId, CreateFABOrderRequest req)
     {
         var addingList = new List<BookingFoodBeverage>();
         foreach (var f in req.listFABOrder)
@@ -71,12 +71,16 @@ public class FABService :IFABService
 
     public async Task<bool> DeleteFABOrder(int orderId)
     {
-        _fabOrderRepository.Remove(orderId);
+        var orderIds = _fabOrderRepository.FindByCondition(x => x.BookingId == orderId).Select(x => x.BookingFoodId).ToList();
+        foreach (var id in orderIds)
+        {
+            _fabOrderRepository.Remove(id);
+        }
         bool result = await _fAbRepository.Commit() > 0 ? true : false;
         return result;
     }
 
-    public async Task<bool> UpdateFABOrder(int orderId,UpdateBookingFABRequest req)
+    public async Task<bool> UpdateFABOrder(int orderId, UpdateBookingFABRequest req)
     {
         var updateFoodIds = req.UpdateFABOrders.Select(o => o.fABId).ToList();
         var existedFoodIds = await _fabOrderRepository.FindByCondition(o => o.BookingId == orderId)
@@ -99,7 +103,7 @@ public class FABService :IFABService
             var foodOrder = new BookingFoodBeverage()
             {
                 FoodId = id,
-                Quantity = req.UpdateFABOrders.Where(o => o.fABId == id).Select(o =>o.amount).First(),
+                Quantity = req.UpdateFABOrders.Where(o => o.fABId == id).Select(o => o.amount).First(),
                 BookingId = orderId
             };
             await _fabOrderRepository.AddAsync(foodOrder);
@@ -109,7 +113,7 @@ public class FABService :IFABService
         {
             var existedObject = await _fabOrderRepository.FindByCondition(o => o.BookingId == orderId
                                                                                && o.FoodId == id).FirstAsync();
-            existedObject.Quantity = req.UpdateFABOrders.Where(o => o.fABId == id).Select(o => o.amount).First(); 
+            existedObject.Quantity = req.UpdateFABOrders.Where(o => o.fABId == id).Select(o => o.amount).First();
             _fabOrderRepository.Update(existedObject);
         }
 
