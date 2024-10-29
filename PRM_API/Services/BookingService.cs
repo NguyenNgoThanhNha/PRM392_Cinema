@@ -3,6 +3,7 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using PRM_API.Common.Enum;
 using PRM_API.Common.Payloads.Request;
+using PRM_API.Common.Payloads.Response;
 using PRM_API.Dtos;
 using PRM_API.Exceptions;
 using PRM_API.Models;
@@ -15,14 +16,17 @@ public class BookingService
     private readonly IRepository<Booking, int> _bookingRepository;
     private readonly IMapper _mapper;
     private readonly IRepository<BookingSeat, int> _bookingSeatRepository;
+    private readonly IRepository<BookingFoodBeverage, int> _fabRepository;
 
     public BookingService(IRepository<Booking, int> bookingRepository,
         IMapper mapper,
-        IRepository<BookingSeat, int> bookingSeatRepository)
+        IRepository<BookingSeat, int> bookingSeatRepository,
+        IRepository<BookingFoodBeverage,int> fabRepository)
     {
         _bookingRepository = bookingRepository;
         _mapper = mapper;
         _bookingSeatRepository = bookingSeatRepository;
+        _fabRepository = fabRepository;
     }
 
     public async Task<BookingDTO> CreateBooking(CreateBookingRequest request)
@@ -100,5 +104,46 @@ public class BookingService
         var query = _bookingSeatRepository.GetAll();
 
         return _mapper.Map<List<BookingSeatDTO>>(query.Where(bs => bs.BookingId == booking.BookingId).ToList());
+    }
+
+    public async Task<GetBookingDetailResponse?> GetBookingOrderDetails(int id)
+    {
+        var bookingSeats = await _bookingSeatRepository.FindByCondition(bs => bs.BookingId == id)
+            .Include(bs => bs.Seat)
+            .Select(bs => bs.Seat.SeatNumber)
+            .ToListAsync();
+        var fabs = _fabRepository.FindByCondition(fab => fab.BookingId == id)
+            .Include(fab => fab.Food).AsQueryable();
+        var fabsDetail = fabs.Select(fabs => new ShortFABDetails()
+            {
+                FoodName = fabs.Food.Name,
+                Amount = fabs.Quantity
+            })
+            .ToList();
+
+        var total = _bookingRepository.FindByCondition(bo => bo.BookingId == id).Select(b => b.TotalPrice).First();
+        var fabTotal = fabs.Select(f => f.Quantity * f.Food.Price).Sum();
+        
+        
+        var result = await _bookingRepository.FindByCondition(bo => bo.BookingId == id)
+            .Include(b => b.User)
+            .Include(b => b.Showtime)
+            .ThenInclude(s => s.Hall)
+            .Include(b => b.Showtime)
+            .ThenInclude(s => s.Movie)
+            .Select(b => new GetBookingDetailResponse()
+            {
+                BookingId = b.BookingId,
+                UserName = b.User.Username,
+                HallName = b.Showtime.Hall.HallName,
+                MovieName = b.Showtime.Movie.Title,
+                ShowDate = b.Showtime.ShowDate,
+                BookingDate = b.BookingDate,
+                SeatNames = bookingSeats,
+                FABDetails = fabs.Any() ? fabsDetail: new List<ShortFABDetails>(),
+                Status = b.Status,
+                TotalPrice = total+fabTotal
+            }).FirstOrDefaultAsync();
+        return result;
     }
 }
