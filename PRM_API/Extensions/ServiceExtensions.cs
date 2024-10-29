@@ -44,6 +44,8 @@ namespace PRM_API.Extensions
             services.AddScoped<SeatService>();
             services.AddScoped<IShowtimeService, ShowtimeService>();
             services.AddScoped<IMovieService, MovieService>();
+            services.AddScoped<IFABService,FABService>();
+           
 
             return services;
         }

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using PRM_API.Common.Payloads;
 using PRM_API.Common.Payloads.Request;
 using PRM_API.Common.Payloads.Response;
+using PRM_API.Exceptions;
 using PRM_API.Services;
 
 namespace PRM_API.Controllers
@@ -74,5 +75,14 @@ namespace PRM_API.Controllers
                 data = booking
             }));
         }
+
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> GetBookingDetail([FromRoute] int id)
+        {
+            var result = await _bookingService.GetBookingOrderDetails(id);
+            if (result is null) throw new BadRequestException("Something went wrong");
+            return Ok(ApiResult<GetBookingDetailResponse>.Succeed(result));
+        }
+
     }
 }
