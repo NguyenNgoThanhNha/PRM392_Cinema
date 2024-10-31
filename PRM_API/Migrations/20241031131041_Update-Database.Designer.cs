@@ -12,8 +12,8 @@ using PRM_API.Models;
 namespace PRM_API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241027051421_Intitial database")]
-    partial class Intitialdatabase
+    [Migration("20241031131041_Update-Database")]
+    partial class UpdateDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -214,6 +214,9 @@ namespace PRM_API.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)")
                         .HasColumnName("language");
+
+                    b.Property<string>("LinkTrailer")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("Rating")
                         .HasColumnType("decimal(2, 1)")

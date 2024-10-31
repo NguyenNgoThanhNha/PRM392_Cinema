@@ -105,29 +105,29 @@ using PRM_API.Models;
             if (!cinemaHalls.Any()) return; 
 
             var random = new Random();
-            var moviesData = new List<(string Title, string Description, string)>
+            var moviesData = new List<(string Title, string Description, string language, string linkTrailer)>
             {
                 // English Movies translated to Vietnamese
-                ("Cuộc Phiêu Lưu Vĩ Đại", "Một cuộc hành trình kỳ thú qua những vùng đất chưa được khám phá.", MovieLanguage.English.GetDescription()),
-                ("Tình Yêu Ở Paris", "Một câu chuyện tình lãng mạn diễn ra tại trái tim của Paris.", MovieLanguage.English.GetDescription()),
-                ("Bí Ẩn Đảo Hoang", "Một câu chuyện bí ẩn đầy kịch tính xảy ra trên một hòn đảo hoang vắng.", MovieLanguage.English.GetDescription()),
+                ("Cuộc Phiêu Lưu Vĩ Đại", "Một cuộc hành trình kỳ thú qua những vùng đất chưa được khám phá.", MovieLanguage.English.GetDescription(), "https://www.youtube.com/watch?v=A6KisSdCU40"),
+                ("Tình Yêu Ở Paris", "Một câu chuyện tình lãng mạn diễn ra tại trái tim của Paris.", MovieLanguage.English.GetDescription(), "https://www.youtube.com/watch?v=EcYhREP1uAM"),
+                ("HÒN ĐẢO HUYỀN BÍ", "Một câu chuyện bí ẩn đầy kịch tính xảy ra trên một hòn đảo hoang vắng.", MovieLanguage.English.GetDescription(), "https://www.youtube.com/watch?v=dP6QiE-LOsc"),
         
                 // Japanese Movie translated to Vietnamese
-                ("Con Đường Của Samurai", "Một câu chuyện về danh dự và trả thù diễn ra tại Nhật Bản thời phong kiến.", MovieLanguage.Japanese.GetDescription()),
+                ("Con Đường Của Samurai", "Một câu chuyện về danh dự và trả thù diễn ra tại Nhật Bản thời phong kiến.", MovieLanguage.Japanese.GetDescription(), "https://www.youtube.com/watch?v=SRjK0ZxtinY"),
         
                 // Korean Movie translated to Vietnamese
-                ("Biển Lặng", "Một bộ phim khoa học viễn tưởng về nhiệm vụ thu thập những mẫu vật bí ẩn từ mặt trăng.", MovieLanguage.Korean.GetDescription()),
+                ("Biển Lặng", "Một bộ phim khoa học viễn tưởng về nhiệm vụ thu thập những mẫu vật bí ẩn từ mặt trăng.", MovieLanguage.Korean.GetDescription(), "https://www.youtube.com/watch?v=LVnEh2lkhSs"),
         
                 // Thai Movie translated to Vietnamese
-                ("Những Đêm Bangkok", "Một bộ phim tội phạm gay cấn diễn ra trên những con phố sầm uất của Bangkok.", MovieLanguage.Thai.GetDescription()),
+                ("Những Đêm Bangkok", "Một bộ phim tội phạm gay cấn diễn ra trên những con phố sầm uất của Bangkok.", MovieLanguage.Thai.GetDescription(), "https://www.youtube.com/watch?v=sU7csNuY_wU"),
         
                 // Vietnamese Movie (no translation needed)
-                ("Hoàng Hôn Sài Gòn", "Một câu chuyện ấm lòng về tình yêu và truyền thống trong Việt Nam hiện đại.", MovieLanguage.Vietnamese.GetDescription()),
+                ("Cô Dâu Hào Môn", "Bộ phim lấy đề tài làm dâu hào môn, khai thác câu chuyện môn đăng hộ đối, lối sống và quy tắc của giới thượng lưu dưới góc nhìn hài hước và châm biếm.", MovieLanguage.Vietnamese.GetDescription(), "https://www.youtube.com/watch?v=QJ8E9R70csY"),
         
                 // More English Movies translated to Vietnamese
-                ("Chiến Tranh Thiên Hà", "Một trận chiến liên thiên hà để sinh tồn.", MovieLanguage.English.GetDescription()),
-                ("Những Giấc Mơ Hoạt Hình", "Một bộ phim hoạt hình ấm áp dành cho mọi lứa tuổi.", MovieLanguage.English.GetDescription()),
-                ("Ngôi Nhà Ma Ám", "Một câu chuyện kinh hoàng về một ngôi nhà bị ma ám.", MovieLanguage.English.GetDescription())
+                ("Chiến Tranh Thiên Hà", "Một trận chiến liên thiên hà để sinh tồn.", MovieLanguage.English.GetDescription(), "https://www.youtube.com/watch?v=K01L98IMhyw"),
+                ("Những Giấc Mơ Hoạt Hình", "Một bộ phim hoạt hình ấm áp dành cho mọi lứa tuổi.", MovieLanguage.English.GetDescription(), "https://www.youtube.com/watch?v=xK26GHCWrmA"),
+                ("Ngôi Nhà Ma Ám", "Một câu chuyện kinh hoàng về một ngôi nhà bị ma ám.", MovieLanguage.English.GetDescription(), "https://www.youtube.com/watch?v=l19SF7zHqrQ")
             };
 
             var movieGenres = Enum.GetValues(typeof(MovieGenre)).Cast<MovieGenre>()
@@ -135,7 +135,7 @@ using PRM_API.Models;
 
             var movies = new List<Movie>();
 
-            foreach (var (title, description, language) in moviesData)
+            foreach (var (title, description, language, linkTrailer) in moviesData)
             {
                 var movie = new Movie
                 {
@@ -145,7 +145,8 @@ using PRM_API.Models;
                     Duration = (int)(Math.Round(random.Next(80, 180) / 10.0) * 10), 
                     Rating = Math.Round((decimal)(random.NextDouble() * 4 + 1), 1), 
                     Genre = movieGenres[random.Next(movieGenres.Count)].ToString(),
-                    Language = language.ToString()
+                    Language = language.ToString(),
+                    LinkTrailer = linkTrailer
                 };
 
                 var showtimeCount = random.Next(3, 6);

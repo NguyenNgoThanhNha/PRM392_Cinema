@@ -20,6 +20,8 @@ public partial class Movie
     public string? Genre { get; set; }
 
     public string? Language { get; set; }
+    
+    public string? LinkTrailer { get; set; }
 
     public virtual ICollection<Showtime> Showtimes { get; set; } = new List<Showtime>();
 }

@@ -212,6 +212,9 @@ namespace PRM_API.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasColumnName("language");
 
+                    b.Property<string>("LinkTrailer")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<decimal?>("Rating")
                         .HasColumnType("decimal(2, 1)")
                         .HasColumnName("rating");
