@@ -21,6 +21,15 @@ namespace PRM_API.Controllers
             _userService = userService;
             _mapper = mapper;
         }
+        
+        [HttpPost("sign-up")]
+        public async Task<IActionResult> SignUp([FromBody] SignUpRequest req) 
+        {
+            var result = await _userService.SignUp(req);
+            if (result is null) throw new BadRequestException("Wrong email or password");
+            return Ok(ApiResult<UserDTO>.Succeed(_mapper.Map<UserDTO>(result)));
+        }
+        
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginRequest req) 
         {
