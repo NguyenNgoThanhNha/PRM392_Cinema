@@ -304,6 +304,11 @@ namespace PRM_API.Migrations
                         .HasColumnType("datetime")
                         .HasColumnName("show_date");
 
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("status");
+
                     b.HasKey("ShowtimeId");
 
                     b.HasIndex("HallId");

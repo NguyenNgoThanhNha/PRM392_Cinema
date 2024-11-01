@@ -215,6 +215,7 @@ public partial class ApplicationDbContext : DbContext
             entity.Property(e => e.ShowtimeId).HasColumnName("showtime_id");
             entity.Property(e => e.HallId).HasColumnName("hall_id");
             entity.Property(e => e.MovieId).HasColumnName("movie_id");
+            entity.Property(e => e.Status).HasColumnName("status");
             entity.Property(e => e.ShowDate)
                 .HasColumnType("datetime")
                 .HasColumnName("show_date");

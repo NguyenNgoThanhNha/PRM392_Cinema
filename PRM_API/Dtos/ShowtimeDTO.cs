@@ -11,6 +11,7 @@
         public decimal SeatPrice { get; set; }
 
         public DateTime ShowDate { get; set; }
+        public string Status { get; set; }
 
         /*        public virtual ICollection<Booking> Bookings { get; set; } = new List<Booking>();*/
 

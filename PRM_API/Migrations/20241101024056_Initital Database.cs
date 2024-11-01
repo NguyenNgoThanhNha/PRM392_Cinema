@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace PRM_API.Migrations
 {
     /// <inheritdoc />
-    public partial class UpdateDatabase : Migration
+    public partial class InititalDatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -111,7 +111,8 @@ namespace PRM_API.Migrations
                     movie_id = table.Column<int>(type: "int", nullable: false),
                     hall_id = table.Column<int>(type: "int", nullable: false),
                     show_date = table.Column<DateTime>(type: "datetime", nullable: false),
-                    seat_price = table.Column<decimal>(type: "decimal(10,2)", nullable: false)
+                    seat_price = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
+                    status = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
