@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace PRM_API.Migrations
 {
     /// <inheritdoc />
-    public partial class InititalDatabase : Migration
+    public partial class InitialDatbase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -54,7 +54,8 @@ namespace PRM_API.Migrations
                     rating = table.Column<decimal>(type: "decimal(2,1)", nullable: true),
                     genre = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
                     language = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    LinkTrailer = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    LinkTrailer = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    poster_url = table.Column<string>(type: "nvarchar(2048)", maxLength: 2048, nullable: true)
                 },
                 constraints: table =>
                 {

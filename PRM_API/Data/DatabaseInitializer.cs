@@ -105,29 +105,29 @@ using PRM_API.Models;
             if (!cinemaHalls.Any()) return; 
 
             var random = new Random();
-            var moviesData = new List<(string Title, string Description, string language, string linkTrailer)>
+            var moviesData = new List<(string Title, string Description, string language, string linkTrailer, string posterUrl)>
             {
                 // English Movies translated to Vietnamese
-                ("Cuộc Phiêu Lưu Vĩ Đại", "Một cuộc hành trình kỳ thú qua những vùng đất chưa được khám phá.", MovieLanguage.English.GetDescription(), "https://www.youtube.com/watch?v=A6KisSdCU40"),
-                ("Tình Yêu Ở Paris", "Một câu chuyện tình lãng mạn diễn ra tại trái tim của Paris.", MovieLanguage.English.GetDescription(), "https://www.youtube.com/watch?v=EcYhREP1uAM"),
-                ("HÒN ĐẢO HUYỀN BÍ", "Một câu chuyện bí ẩn đầy kịch tính xảy ra trên một hòn đảo hoang vắng.", MovieLanguage.English.GetDescription(), "https://www.youtube.com/watch?v=dP6QiE-LOsc"),
+                ("Fast & Furios 9: The Fast Saga", "Một cuộc hành trình kỳ thú qua những vùng đất chưa được khám phá.", MovieLanguage.English.GetDescription(), "https://www.youtube.com/watch?v=FUK2kdPsBws", "https://play-lh.googleusercontent.com/_htZmnHuvvWTfjh2PzDbXe0zPG8ELV4X830zwrgaumOVtBvQ0xSKAOArXMPrPKZQq4P6GYeiwT50ZW09xw"),
+                ("Nàng Tiên Cá ở Paris", "Một câu chuyện tình lãng mạn diễn ra tại trái tim của Paris.", MovieLanguage.English.GetDescription(), "https://www.youtube.com/watch?v=EcYhREP1uAM", "https://dep.com.vn/wp-content/uploads/2020/09/Poster-NANG-TIEN-CA-O-PARIS-6-3.jpg"),
+                ("Hòn Đảo Huyền Bí", "Một câu chuyện bí ẩn đầy kịch tính xảy ra trên một hòn đảo hoang vắng.", MovieLanguage.English.GetDescription(), "https://www.youtube.com/watch?v=dP6QiE-LOsc", "https://banana-customer-pic.oss-cn-hongkong.aliyuncs.com/vi/hon-dao-huyen-bi-thumb.jpg"),
         
                 // Japanese Movie translated to Vietnamese
-                ("Con Đường Của Samurai", "Một câu chuyện về danh dự và trả thù diễn ra tại Nhật Bản thời phong kiến.", MovieLanguage.Japanese.GetDescription(), "https://www.youtube.com/watch?v=SRjK0ZxtinY"),
+                ("Samurai Cuối Cùng", "Một câu chuyện về danh dự và trả thù diễn ra tại Nhật Bản thời phong kiến.", MovieLanguage.Japanese.GetDescription(), "https://www.youtube.com/watch?v=T50_qHEOahQ", "https://benjweinberg.com/wp-content/uploads/2020/03/1-997.jpg?w=1024"),
+                ("Conan Movie 27: Ngôi Sao Năm Cánh Triệu Đô", "Nội dung Conan Movie 27 xoay quanh chuyến đi Hakodate của Conan và Heiji. Khi cả hai đến địa điểm này để thi đấu kiếm đạo thì bất ngờ vướng vào vụ án ly kỳ liên quan đến siêu trộm Kaito Kid.", MovieLanguage.Japanese.GetDescription(), "https://www.youtube.com/watch?v=CBW5SLVMrV4", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVvcdE76o-jVvWfZ9xvVN49wrV0QkOTypfIQ&s"),
         
                 // Korean Movie translated to Vietnamese
-                ("Biển Lặng", "Một bộ phim khoa học viễn tưởng về nhiệm vụ thu thập những mẫu vật bí ẩn từ mặt trăng.", MovieLanguage.Korean.GetDescription(), "https://www.youtube.com/watch?v=LVnEh2lkhSs"),
+                ("Biển Tĩnh Lặng", "Một bộ phim khoa học viễn tưởng về nhiệm vụ thu thập những mẫu vật bí ẩn từ mặt trăng.", MovieLanguage.Korean.GetDescription(), "https://www.youtube.com/watch?v=LVnEh2lkhSs", "https://kenh14cdn.com/zoom/700_438/pr/2022/photo1650516694595-1650516694845212926559-63786143141287.jpg"),
         
                 // Thai Movie translated to Vietnamese
-                ("Những Đêm Bangkok", "Một bộ phim tội phạm gay cấn diễn ra trên những con phố sầm uất của Bangkok.", MovieLanguage.Thai.GetDescription(), "https://www.youtube.com/watch?v=sU7csNuY_wU"),
+                ("Quỷ Ăn Tạng", "Phim lấy bối cảnh năm 1972 ở tỉnh Kanchanaburi, xoay quanh một gia đình nông dân có sáu người con bao gồm ba con trai Yak, Yos, Yod và ba con gái Yad, Yam, Yee. Trước đó, cái chết bí ẩn của một cô gái trẻ trong làng từng khiến người dân xung quanh khiếp sợ.", MovieLanguage.Thai.GetDescription(), "https://www.youtube.com/watch?v=sU7csNuY_wU", "https://image.tmdb.org/t/p/original/fHXH7PqZhtAHmjMAKhI6kbsLzJe.jpg"),
+                ("Ngôi Nhà Ma Ám", "Một câu chuyện kinh hoàng về một ngôi nhà bị ma ám.", MovieLanguage.Thai.GetDescription(), "https://www.youtube.com/watch?v=wrHEzVPKHTo", "https://sovhtt.hanoi.gov.vn/wp-content/uploads/2018/06/wraith-official-poster-420x600.jpg"),
         
                 // Vietnamese Movie (no translation needed)
-                ("Cô Dâu Hào Môn", "Bộ phim lấy đề tài làm dâu hào môn, khai thác câu chuyện môn đăng hộ đối, lối sống và quy tắc của giới thượng lưu dưới góc nhìn hài hước và châm biếm.", MovieLanguage.Vietnamese.GetDescription(), "https://www.youtube.com/watch?v=QJ8E9R70csY"),
+                ("Cô Dâu Hào Môn", "Bộ phim lấy đề tài làm dâu hào môn, khai thác câu chuyện môn đăng hộ đối, lối sống và quy tắc của giới thượng lưu dưới góc nhìn hài hước và châm biếm.", MovieLanguage.Vietnamese.GetDescription(), "https://www.youtube.com/watch?v=9jyPXIf4wVk", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbvq1c1IO2gWJcUmj1O_AFOSDpxqYDcGMfaQ&s"),
         
                 // More English Movies translated to Vietnamese
-                ("Chiến Tranh Thiên Hà", "Một trận chiến liên thiên hà để sinh tồn.", MovieLanguage.English.GetDescription(), "https://www.youtube.com/watch?v=K01L98IMhyw"),
-                ("Những Giấc Mơ Hoạt Hình", "Một bộ phim hoạt hình ấm áp dành cho mọi lứa tuổi.", MovieLanguage.English.GetDescription(), "https://www.youtube.com/watch?v=xK26GHCWrmA"),
-                ("Ngôi Nhà Ma Ám", "Một câu chuyện kinh hoàng về một ngôi nhà bị ma ám.", MovieLanguage.English.GetDescription(), "https://www.youtube.com/watch?v=l19SF7zHqrQ")
+                ("Kung Ku Panda 4", "Kung Fu Panda 4 là một bộ phim điện ảnh hoạt hình Mỹ thuộc thể loại hài võ thuật ra mắt vào năm 2024, do DreamWorks Animation sản xuất và Universal Pictures phát hành.", MovieLanguage.English.GetDescription(), "https://www.youtube.com/watch?v=_inKs4eeHiI", "https://cellphones.com.vn/sforum/wp-content/uploads/2024/02/lich-chieu-phim-kung-fu-panda-4-1.jpg"),
             };
 
             var movieGenres = Enum.GetValues(typeof(MovieGenre)).Cast<MovieGenre>()
@@ -137,8 +137,7 @@ using PRM_API.Models;
                 .Select(x => x.GetDescription()).ToList();
 
             var movies = new List<Movie>();
-
-            foreach (var (title, description, language, linkTrailer) in moviesData)
+            foreach (var (title, description, language, linkTrailer, posterUrl) in moviesData)
             {
                 var movie = new Movie
                 {
@@ -149,7 +148,8 @@ using PRM_API.Models;
                     Rating = Math.Round((decimal)(random.NextDouble() * 4 + 1), 1), 
                     Genre = movieGenres[random.Next(movieGenres.Count)].ToString(),
                     Language = language.ToString(),
-                    LinkTrailer = linkTrailer
+                    LinkTrailer = linkTrailer,
+                    PosterUrl = posterUrl
                 };
 
                 var showtimeCount = random.Next(3, 6);

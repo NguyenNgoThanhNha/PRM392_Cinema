@@ -31,8 +31,8 @@ namespace PRM_API.Controllers
                             && mv.ReleaseDate.Value.Equals(filter.ReleaseDate.Value)) ||
                         (mv.Duration.HasValue && mv.Duration.Value == filter.Duration) ||
                         (mv.Rating.HasValue && mv.Rating.Value == filter.Rating) || 
-                        (!string.IsNullOrEmpty(mv.Genre) && mv.Genre == filter.Genre) || 
-                        (!string.IsNullOrEmpty(mv.Language) && mv.Language == filter.Language) ||
+                        ((!string.IsNullOrEmpty(mv.Genre) && mv.Genre == filter.Genre) && 
+                        (!string.IsNullOrEmpty(mv.Language) && mv.Language == filter.Language)) ||
                         (mv.Showtimes.Any() && mv.Showtimes.Any(st => 
                             st.ShowDate >= filter.ShowTimeFrom && st.ShowDate <= filter.ShowTimeTo)),
                     orderBy: null,
