@@ -16,5 +16,6 @@ public class ApplicationMapper : Profile
         CreateMap<CinemaHall, HallDTO>().ReverseMap();
         CreateMap<Showtime, ShowtimeDTO>().ReverseMap();
         CreateMap<FoodBeverage, FoodBeverageDTO>().ReverseMap();
+        CreateMap<BookingFoodBeverage, BookingFoodBeverageDTO>().ReverseMap();
     }
 }

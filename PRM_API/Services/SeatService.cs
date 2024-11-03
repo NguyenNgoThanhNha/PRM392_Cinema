@@ -5,6 +5,7 @@ using PRM_API.Exceptions;
 using PRM_API.Models;
 using PRM_API.Repositories;
 using PRM_API.Services.Impl;
+using System.Diagnostics.Contracts;
 
 namespace PRM_API.Services;
 
@@ -37,5 +38,19 @@ public class SeatService
             .Where(s => s.HallId == showtimeDTO.HallId)
             // Convert to list
             .ToList());
+    }
+    
+    public async Task<List<SeatDTO>> CheckSeatAvaiableAsync(List<int> seatIds)
+    {
+        var query = _seatRepository.GetAll();
+        var seatEntities = await query.Where(s => seatIds.Contains(s.SeatId) && s.IsSold).ToListAsync();
+        return _mapper.Map<List<SeatDTO>>(seatEntities);
+    }
+
+    public async Task<List<SeatDTO>> CheckExistIsOffSeatAsync(List<int> seatIds)
+    {
+        var query = _seatRepository.GetAll();
+        var seatEntities = await query.Where(s => seatIds.Contains(s.SeatId) && s.IsOff).ToListAsync();
+        return _mapper.Map<List<SeatDTO>>(seatEntities);
     }
 }
