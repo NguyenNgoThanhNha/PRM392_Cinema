@@ -176,7 +176,7 @@ public class BookingService
                 }).ToList(),
                 FABDetails = fabsDetail,
                 Status = b.Status,
-                TotalPrice = bookingTotal + fabTotal
+                TotalPrice = b.TotalPrice,
             }).FirstOrDefaultAsync();
 
         return result;

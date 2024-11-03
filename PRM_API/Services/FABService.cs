@@ -15,13 +15,16 @@ public class FABService : IFABService
     private readonly IRepository<FoodBeverage, int> _fAbRepository;
     private readonly IMapper _mapper;
     private readonly IRepository<BookingFoodBeverage, int> _fabOrderRepository;
+    private readonly IRepository<Booking, int> _bookingRepository;
 
     public FABService(IRepository<FoodBeverage, int> fAbRepository, IMapper mapper,
-        IRepository<BookingFoodBeverage, int> fabOrderRepository)
+        IRepository<BookingFoodBeverage, int> fabOrderRepository,
+        IRepository<Booking, int> bookingRepository)
     {
         _fAbRepository = fAbRepository;
         _mapper = mapper;
         _fabOrderRepository = fabOrderRepository;
+        _bookingRepository = bookingRepository;
     }
     public async Task<IEnumerable<FoodBeverageDTO>> GetAllFAB()
     {
@@ -39,9 +42,30 @@ public class FABService : IFABService
 
     public async Task CreateFABOrder(int orderId, CreateFABOrderRequest req)
     {
+        // Retrieve booking
+        var booking = await _bookingRepository.GetByIdAsync(orderId);
+        if (booking == null)
+        {
+            throw new BadRequestException("Order not found!");
+        }
+
+        // Initialize total price and list for new orders
+        var totalPrice = booking.TotalPrice;
         var addingList = new List<BookingFoodBeverage>();
+
+        // Process each FAB order item
         foreach (var f in req.listFABOrder)
         {
+            var fab = await _fAbRepository.GetByIdAsync(f.fABId);
+            if (fab == null)
+            {
+                throw new BadRequestException($"FAB item with ID {f.fABId} not found!");
+            }
+
+            // Update total price
+            totalPrice += fab.Price * f.amount;
+
+            // Create and add new order entry
             var order = new BookingFoodBeverage()
             {
                 FoodId = f.fABId,
@@ -51,8 +75,13 @@ public class FABService : IFABService
             addingList.Add(order);
         }
 
+        // Save FAB orders and update booking total price
         await _fabOrderRepository.AddRangeAsync(addingList);
+        booking.TotalPrice = totalPrice;
+        var bookingUpdate = _bookingRepository.Update(booking);
+        var result = await _bookingRepository.Commit();
     }
+
 
     public async Task<List<FABOrderDetails>> GetAllFABOrderResponse(int orderId)
     {
