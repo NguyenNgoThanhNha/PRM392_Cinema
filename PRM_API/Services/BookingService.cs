@@ -188,6 +188,9 @@ public class BookingService
             .Include(x => x.BookingSeats).ThenInclude(x => x.Seat)
             .Include(x => x.BookingFoodBeverages).ThenInclude(x => x.Food)
             .Include(x => x.Showtime)
+                .ThenInclude(x => x.Movie)
+            .Include(x => x.Showtime)
+                .ThenInclude(x => x.Hall)
             .Include(x => x.User)
             .ToListAsync();
 
