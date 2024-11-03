@@ -23,5 +23,7 @@ public partial class Movie
     
     public string? LinkTrailer { get; set; }
 
+    public string? PosterUrl { get; set; }
+
     public virtual ICollection<Showtime> Showtimes { get; set; } = new List<Showtime>();
 }

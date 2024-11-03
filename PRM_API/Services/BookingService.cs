@@ -16,16 +16,19 @@ public class BookingService
     private readonly IMapper _mapper;
     private readonly IRepository<BookingSeat, int> _bookingSeatRepository;
     private readonly IRepository<BookingFoodBeverage, int> _fabRepository;
+    private readonly IRepository<Seat, int> _seatRepo;
 
     public BookingService(IRepository<Booking, int> bookingRepository,
         IMapper mapper,
         IRepository<BookingSeat, int> bookingSeatRepository,
-        IRepository<BookingFoodBeverage, int> fabRepository)
+        IRepository<BookingFoodBeverage, int> fabRepository,
+        IRepository<Seat, int> seatRepo)
     {
         _bookingRepository = bookingRepository;
         _mapper = mapper;
         _bookingSeatRepository = bookingSeatRepository;
         _fabRepository = fabRepository;
+        _seatRepo = seatRepo;
     }
 
     public async Task<BookingDTO> CreateBooking(CreateBookingRequest request)
@@ -62,10 +65,22 @@ public class BookingService
 
         if (result > 0)
         {
+            // Get selected seats
+            var seats = await _seatRepo.GetAll().Where(s => 
+                request.listSeatId!.Contains(s.SeatId)).ToListAsync();
+            // Progress update status
+            seats.ForEach(s => s.IsSold = true);
+            // Save changes
+            await _seatRepo.Commit();
+            
+            // Clear all booking in booking seat
+            bookingCreated.BookingSeats.Select(bs => bs.Booking = null);
+
+            // Map resp to DTO
             return _mapper.Map<BookingDTO>(bookingCreated);
         }
 
-        return null;
+        return null!;
     }
 
     public async Task<BookingDTO> UpdateStatusBooking(UpdateBookingRequest request)
@@ -166,8 +181,7 @@ public class BookingService
 
         return result;
     }
-
-
+    
     public async Task<List<GetListBookingOfUserResponse>?> GetListBookingOfUser(int id)
     {
         var listBookingUser = await _bookingRepository.FindByCondition(x => x.UserId == id)
@@ -209,7 +223,4 @@ public class BookingService
 
         return response;
     }
-
-
-
 }

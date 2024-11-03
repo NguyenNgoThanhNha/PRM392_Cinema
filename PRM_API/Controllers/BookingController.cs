@@ -12,10 +12,13 @@ namespace PRM_API.Controllers
     public class BookingController : ControllerBase
     {
         private readonly BookingService _bookingService;
+        private readonly SeatService _seatService;
 
-        public BookingController(BookingService bookingService)
+        public BookingController(BookingService bookingService,
+            SeatService seatService)
         {
             _bookingService = bookingService;
+            _seatService = seatService;
         }
 
         [HttpPost("create-booking")]
@@ -30,6 +33,43 @@ namespace PRM_API.Controllers
 
                 return BadRequest(ApiResult<List<string>>.Error(errors));
             }
+
+            // Mark as valid seats selected
+            var isValidSeatSelected = true;
+            // Check whether seats are off 
+            var offSeats = await _seatService.CheckExistIsOffSeatAsync(createBookingRequest.listSeatId);
+            if (offSeats.Any())
+            {
+                // Mark as error invoke
+                isValidSeatSelected = false;
+
+                var existSeatNumbers = offSeats.Select(x => x.SeatNumber).ToArray();
+                ModelState.AddModelError("listSeatId",
+                    $"Some selected seats not exist, please check again.");
+            }
+
+            // Check whether seats are sold or not 
+            var alreadySoldSeats = await _seatService.CheckSeatAvaiableAsync(createBookingRequest.listSeatId);
+            if (alreadySoldSeats.Any())
+            {
+                // Mark as error invoke
+                isValidSeatSelected = false;
+
+                var existSeatNumbers = alreadySoldSeats.Select(x => x.SeatNumber).ToArray();
+                ModelState.AddModelError("listSeatId",
+                    $"Seat(s): {string.Join(", ", existSeatNumbers)} already sold.");
+            }
+
+            if (!isValidSeatSelected)
+            {
+                var errors = ModelState.Values
+                    .SelectMany(v => v.Errors)
+                    .Select(e => e.ErrorMessage)
+                    .ToList();
+
+                return BadRequest(ApiResult<List<string>>.Error(errors));
+            }
+
 
             var booking = await _bookingService.CreateBooking(createBookingRequest);
             if (booking.Equals(null))

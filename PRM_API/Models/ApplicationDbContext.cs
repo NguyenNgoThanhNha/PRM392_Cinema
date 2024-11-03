@@ -183,6 +183,9 @@ public partial class ApplicationDbContext : DbContext
                 .IsRequired()
                 .HasMaxLength(255)
                 .HasColumnName("title");
+            entity.Property(e => e.PosterUrl)
+                .HasMaxLength(2048)
+                .HasColumnName("poster_url");
         });
 
         modelBuilder.Entity<Seat>(entity =>
