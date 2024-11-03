@@ -84,5 +84,20 @@ namespace PRM_API.Controllers
             return Ok(ApiResult<GetBookingDetailResponse>.Succeed(result));
         }
 
+        [HttpGet("user/{userId:int}")]
+        public async Task<IActionResult> GetListBookingOfUser([FromRoute] int userId)
+        {
+            try
+            {
+                var result = await _bookingService.GetListBookingOfUser(userId);
+                return Ok(ApiResult<List<GetListBookingOfUserResponse>>.Succeed(result));
+            }
+            catch (BadRequestException ex)
+            {
+                return BadRequest(ApiResult<string>.Fail(ex));
+            }
+        }
+
+
     }
 }

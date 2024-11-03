@@ -14,11 +14,11 @@ public class BookingDTO
 
     public string Status { get; set; }
 
-    /*    public virtual ICollection<BookingFoodBeverage>? BookingFoodBeverages { get; set; }
+    public List<BookingFoodBeverageDTO>? BookingFoodBeverages { get; set; }
 
-        public virtual ICollection<BookingSeat>? BookingSeats { get; set; } = new List<BookingSeat>();*/
+    public List<BookingSeatDTO>? BookingSeats { get; set; } = new List<BookingSeatDTO>();
 
-    public virtual ShowtimeDTO? Showtime { get; set; }
+    public ShowtimeDTO? Showtime { get; set; }
 
-    public virtual UserDTO? User { get; set; }
+    public UserDTO? User { get; set; }
 }

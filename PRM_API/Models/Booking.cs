@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace PRM_API.Models;
+﻿namespace PRM_API.Models;
 
 public partial class Booking
 {
