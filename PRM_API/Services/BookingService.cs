@@ -66,13 +66,13 @@ public class BookingService
         if (result > 0)
         {
             // Get selected seats
-            var seats = await _seatRepo.GetAll().Where(s => 
+            var seats = await _seatRepo.GetAll().Where(s =>
                 request.listSeatId!.Contains(s.SeatId)).ToListAsync();
             // Progress update status
             seats.ForEach(s => s.IsSold = true);
             // Save changes
             await _seatRepo.Commit();
-            
+
             // Clear all booking in booking seat
             bookingCreated.BookingSeats.Select(bs => bs.Booking = null);
 
@@ -181,7 +181,7 @@ public class BookingService
 
         return result;
     }
-    
+
     public async Task<List<GetListBookingOfUserResponse>?> GetListBookingOfUser(int id)
     {
         var listBookingUser = await _bookingRepository.FindByCondition(x => x.UserId == id)
@@ -207,7 +207,8 @@ public class BookingService
             BookingFoodBeverages = item.BookingFoodBeverages.Select(fab => new ShortFABDetails
             {
                 FoodName = fab.Food.Name,
-                Amount = (int)fab.Food.Price,
+                Amount = fab.Quantity,
+                Price = fab.Food.Price,
 
             }).ToList(),
             BookingSeats = item.BookingSeats.Select(seat => new ShortSeatDetails
