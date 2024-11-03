@@ -12,8 +12,8 @@ using PRM_API.Models;
 namespace PRM_API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241031131041_Update-Database")]
-    partial class UpdateDatabase
+    [Migration("20241101024056_Initital Database")]
+    partial class InititalDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -306,6 +306,11 @@ namespace PRM_API.Migrations
                     b.Property<DateTime>("ShowDate")
                         .HasColumnType("datetime")
                         .HasColumnName("show_date");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("status");
 
                     b.HasKey("ShowtimeId");
 

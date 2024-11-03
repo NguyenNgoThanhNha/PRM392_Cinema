@@ -20,6 +20,8 @@ public partial class Showtime
 
     public decimal SeatPrice { get; set; }
 
+    public string Status { get; set; } = null!;
+
     [JsonIgnore]
     public virtual Movie Movie { get; set; } = null!;
 }
