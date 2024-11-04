@@ -23,21 +23,34 @@ namespace PRM_API.Controllers
             }
             else
             {
-                movies = (await movieService.FindAllWithConditionAsync(
-                    filter: mv => mv.Title.Contains(filter!.Title!) ||
-                        (!string.IsNullOrEmpty(mv.Description)
-                            && mv.Description.Contains(filter.Description!)) ||
-                        (mv.ReleaseDate.HasValue && filter.ReleaseDate.HasValue
-                            && mv.ReleaseDate.Value.Equals(filter.ReleaseDate.Value)) ||
-                        (mv.Duration.HasValue && mv.Duration.Value == filter.Duration) ||
-                        (mv.Rating.HasValue && mv.Rating.Value == filter.Rating) || 
-                        ((!string.IsNullOrEmpty(mv.Genre) && mv.Genre == filter.Genre) && 
-                        (!string.IsNullOrEmpty(mv.Language) && mv.Language == filter.Language)) ||
-                        (mv.Showtimes.Any() && mv.Showtimes.Any(st => 
-                            st.ShowDate >= filter.ShowTimeFrom && st.ShowDate <= filter.ShowTimeTo)),
-                    orderBy: null,
-                    includeProperties: "Showtimes"
-                    )).ToList();
+                movies = (await movieService.FindAllAsync()).ToList();
+                var query = movies.AsQueryable();
+
+                if(!string.IsNullOrEmpty(filter!.Genre)){
+                    query = query.Where(x => x.Genre!.ToLower().Equals(filter!.Genre.ToLower()));
+                }
+
+                if(!string.IsNullOrEmpty(filter!.Language)){
+                    query = query.Where(x => x.Language!.ToLower().Equals(filter!.Language.ToLower()));
+                }
+
+                movies = query.ToList();
+
+                // movies = (await movieService.FindAllWithConditionAsync(
+                //     filter: mv => mv.Title.Contains(filter!.Title!) ||
+                //         (!string.IsNullOrEmpty(mv.Description)
+                //             && mv.Description.Contains(filter.Description!)) ||
+                //         (mv.ReleaseDate.HasValue && filter.ReleaseDate.HasValue
+                //             && mv.ReleaseDate.Value.Equals(filter.ReleaseDate.Value)) ||
+                //         (mv.Duration.HasValue && mv.Duration.Value == filter.Duration) ||
+                //         (mv.Rating.HasValue && mv.Rating.Value == filter.Rating) || 
+                //         (!string.IsNullOrEmpty(mv.Genre) && mv.Genre == filter.Genre) || 
+                //         (!string.IsNullOrEmpty(mv.Language) && mv.Language == filter.Language) ||
+                //         (mv.Showtimes.Any() && mv.Showtimes.Any(st => 
+                //             st.ShowDate >= filter.ShowTimeFrom && st.ShowDate <= filter.ShowTimeTo)),
+                //     orderBy: null,
+                //     includeProperties: "Showtimes"
+                //     )).ToList();
             }
 
             return Ok(movies);
