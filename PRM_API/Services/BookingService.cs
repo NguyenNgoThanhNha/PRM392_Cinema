@@ -33,10 +33,11 @@ public class BookingService
 
     public async Task<BookingDTO> CreateBooking(CreateBookingRequest request)
     {
+        var timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById("Asia/Ho_Chi_Minh");
         // Booking date
-        var bookingDate = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, 
+        var bookingDate = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow,
             // Vietnam timezone
-            TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time"));
+            timeZoneInfo);
 
         var bookingModel = new BookingDTO()
         {
@@ -49,7 +50,7 @@ public class BookingService
         var bookingEntity = _mapper.Map<Booking>(bookingModel);
         var bookingCreated = await _bookingRepository.AddAsync(bookingEntity);
         var result = await _bookingRepository.Commit();
-
+        
         if (request.listSeatId != null && request.listSeatId.Any())
         {
             foreach (var seatId in request.listSeatId)

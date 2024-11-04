@@ -1,22 +1,14 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\CN8\\PRM392\\Cinemas\\PRM392_Cinema\\",
+  "WorkspaceRootPath": "E:\\SE171957-Phuoclx-FPTHCM\\PRM392\\Final Project\\PRM392_Cinema\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{291ECFAC-ECCF-4A6B-81C7-24BCB023A80B}|PRM_API\\PRM_API.csproj|d:\\cn8\\prm392\\cinemas\\prm392_cinema\\prm_api\\services\\bookingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{291ECFAC-ECCF-4A6B-81C7-24BCB023A80B}|PRM_API\\PRM_API.csproj|solutionrelative:prm_api\\services\\bookingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{291ECFAC-ECCF-4A6B-81C7-24BCB023A80B}|PRM_API\\PRM_API.csproj|D:\\CN8\\PRM392\\Cinemas\\PRM392_Cinema\\prm_api\\services\\fabservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{291ECFAC-ECCF-4A6B-81C7-24BCB023A80B}|PRM_API\\PRM_API.csproj|solutionrelative:prm_api\\services\\fabservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{291ECFAC-ECCF-4A6B-81C7-24BCB023A80B}|PRM_API\\PRM_API.csproj|D:\\CN8\\PRM392\\Cinemas\\PRM392_Cinema\\prm_api\\controllers\\bookingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{291ECFAC-ECCF-4A6B-81C7-24BCB023A80B}|PRM_API\\PRM_API.csproj|e:\\se171957-phuoclx-fpthcm\\prm392\\final project\\prm392_cinema\\prm_api\\controllers\\bookingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{291ECFAC-ECCF-4A6B-81C7-24BCB023A80B}|PRM_API\\PRM_API.csproj|solutionrelative:prm_api\\controllers\\bookingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{291ECFAC-ECCF-4A6B-81C7-24BCB023A80B}|PRM_API\\PRM_API.csproj|D:\\CN8\\PRM392\\Cinemas\\PRM392_Cinema\\prm_api\\controllers\\moviecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{291ECFAC-ECCF-4A6B-81C7-24BCB023A80B}|PRM_API\\PRM_API.csproj|solutionrelative:prm_api\\controllers\\moviecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{291ECFAC-ECCF-4A6B-81C7-24BCB023A80B}|PRM_API\\PRM_API.csproj|e:\\se171957-phuoclx-fpthcm\\prm392\\final project\\prm392_cinema\\prm_api\\services\\bookingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{291ECFAC-ECCF-4A6B-81C7-24BCB023A80B}|PRM_API\\PRM_API.csproj|solutionrelative:prm_api\\services\\bookingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,8 +18,56 @@
       "DocumentGroups": [
         {
           "DockedWidth": 227,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 14,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:7:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:2:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:5:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:7:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:11:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:8:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
@@ -35,51 +75,42 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "FABService.cs",
-              "DocumentMoniker": "D:\\CN8\\PRM392\\Cinemas\\PRM392_Cinema\\PRM_API\\Services\\FABService.cs",
-              "RelativeDocumentMoniker": "PRM_API\\Services\\FABService.cs",
-              "ToolTip": "D:\\CN8\\PRM392\\Cinemas\\PRM392_Cinema\\PRM_API\\Services\\FABService.cs",
-              "RelativeToolTip": "PRM_API\\Services\\FABService.cs",
-              "ViewState": "AQIAAC8AAAAAAAAAAAAmwE8AAAAnAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-03T06:11:14.667Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "BookingService.cs",
-              "DocumentMoniker": "D:\\CN8\\PRM392\\Cinemas\\PRM392_Cinema\\PRM_API\\Services\\BookingService.cs",
+              "DocumentMoniker": "E:\\SE171957-Phuoclx-FPTHCM\\PRM392\\Final Project\\PRM392_Cinema\\PRM_API\\Services\\BookingService.cs",
               "RelativeDocumentMoniker": "PRM_API\\Services\\BookingService.cs",
-              "ToolTip": "D:\\CN8\\PRM392\\Cinemas\\PRM392_Cinema\\PRM_API\\Services\\BookingService.cs",
+              "ToolTip": "E:\\SE171957-Phuoclx-FPTHCM\\PRM392\\Final Project\\PRM392_Cinema\\PRM_API\\Services\\BookingService.cs",
               "RelativeToolTip": "PRM_API\\Services\\BookingService.cs",
-              "ViewState": "AQIAALcAAAAAAAAAAAAvwI4AAAAYAAAA",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAuwC0AAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-03T05:52:43.239Z",
+              "WhenOpened": "2024-11-04T15:50:07.617Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "BookingController.cs",
-              "DocumentMoniker": "D:\\CN8\\PRM392\\Cinemas\\PRM392_Cinema\\PRM_API\\Controllers\\BookingController.cs",
+              "DocumentMoniker": "E:\\SE171957-Phuoclx-FPTHCM\\PRM392\\Final Project\\PRM392_Cinema\\PRM_API\\Controllers\\BookingController.cs",
               "RelativeDocumentMoniker": "PRM_API\\Controllers\\BookingController.cs",
-              "ToolTip": "D:\\CN8\\PRM392\\Cinemas\\PRM392_Cinema\\PRM_API\\Controllers\\BookingController.cs",
+              "ToolTip": "E:\\SE171957-Phuoclx-FPTHCM\\PRM392\\Final Project\\PRM392_Cinema\\PRM_API\\Controllers\\BookingController.cs",
               "RelativeToolTip": "PRM_API\\Controllers\\BookingController.cs",
-              "ViewState": "AQIAAHwAAAAAAAAAAAAkwIMAAABHAAAA",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAMwCUAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-03T05:52:22.139Z"
+              "WhenOpened": "2024-11-03T05:52:22.139Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 227,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:17:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "MovieController.cs",
-              "DocumentMoniker": "D:\\CN8\\PRM392\\Cinemas\\PRM392_Cinema\\PRM_API\\Controllers\\MovieController.cs",
-              "RelativeDocumentMoniker": "PRM_API\\Controllers\\MovieController.cs",
-              "ToolTip": "D:\\CN8\\PRM392\\Cinemas\\PRM392_Cinema\\PRM_API\\Controllers\\MovieController.cs",
-              "RelativeToolTip": "PRM_API\\Controllers\\MovieController.cs",
-              "ViewState": "AQIAABkAAAAAAAAAAAAQwAgAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-03T05:37:46.866Z"
+              "$type": "Bookmark",
+              "Name": "ST:15:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
             }
           ]
         }
