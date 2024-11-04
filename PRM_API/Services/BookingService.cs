@@ -33,11 +33,16 @@ public class BookingService
 
     public async Task<BookingDTO> CreateBooking(CreateBookingRequest request)
     {
+        // Booking date
+        var bookingDate = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, 
+            // Vietnam timezone
+            TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time"));
+
         var bookingModel = new BookingDTO()
         {
             UserId = request.userId,
             ShowtimeId = request.showTimeId,
-            BookingDate = DateTime.Now,
+            BookingDate = bookingDate,
             TotalPrice = request.totalPrice,
             Status = StatusBooking.Processing.ToString()
         };
@@ -192,6 +197,7 @@ public class BookingService
             .Include(x => x.Showtime)
                 .ThenInclude(x => x.Hall)
             .Include(x => x.User)
+            .OrderByDescending(x => x.BookingDate)
             .ToListAsync();
 
         if (!listBookingUser.Any())
