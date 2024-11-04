@@ -33,11 +33,14 @@ public class BookingService
 
     public async Task<BookingDTO> CreateBooking(CreateBookingRequest request)
     {
-        var timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById("Asia/Ho_Chi_Minh");
+        // var timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById("Asia/Ho_Chi_Minh");
+        var utcNow = DateTime.UtcNow;
+        var offset = new TimeSpan(7, 0, 0); 
+        var bookingDate = utcNow.Add(offset);
         // Booking date
-        var bookingDate = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow,
-            // Vietnam timezone
-            timeZoneInfo);
+        // var bookingDate = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow,
+        //     // Vietnam timezone
+        //     timeZoneInfo);
 
         var bookingModel = new BookingDTO()
         {
